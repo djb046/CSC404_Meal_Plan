@@ -1,0 +1,2 @@
+run cmd 'npm install'
+run cmd 'npm start'

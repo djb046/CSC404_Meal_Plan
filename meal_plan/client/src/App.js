@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import logo from './logo.svg';
 
 import './App.css';
+import { example } from './example';
 
 class App extends Component {
   state = {
@@ -24,17 +25,12 @@ class App extends Component {
     return body;
   };
 
+
+  
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <main>
-          {this.props.children}
-          </main>
-        <p className="App-intro">{this.state.response}</p>
+      <div>
+        <span>yayayayayaya</span>
       </div>
     );
   }

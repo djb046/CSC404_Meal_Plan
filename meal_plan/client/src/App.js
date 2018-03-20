@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import logo from './logo.svg';
 
 import './App.css';
-import { example } from './example';
-import Survey from './Survey';
+
+
 
 class App extends Component {
   state = {
@@ -18,12 +18,6 @@ class App extends Component {
   }
 
   callApi = async () => {
-    const response = await fetch('/api/hello');
-    const body = await response.json();
-
-    if (response.status !== 200) throw Error(body.message);
-
-    return body;
   };
 
 
@@ -37,7 +31,7 @@ class App extends Component {
       			<br/>
   				<li><Link to='/Survey'>User Details Survey</Link></li>
   				<br/>
-  				<li><Link to='/example'>Shopping List</Link></li>
+          <li><Link to='/Login'>Login</Link></li>
   			</ul>
 		</span>
       </div>

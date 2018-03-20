@@ -4,6 +4,7 @@ import logo from './logo.svg';
 
 import './App.css';
 import { example } from './example';
+import Survey from './Survey';
 
 class App extends Component {
   state = {
@@ -30,7 +31,15 @@ class App extends Component {
   render() {
     return (
       <div>
-        <span>yayayayayaya</span>
+      	<span >
+      		<ul>
+      			<li><Link to='/'>Home</Link></li>
+      			<br/>
+  				<li><Link to='/Survey'>User Details Survey</Link></li>
+  				<br/>
+  				<li><Link to='/example'>Shopping List</Link></li>
+  			</ul>
+		</span>
       </div>
     );
   }

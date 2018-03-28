@@ -1,4 +1,0 @@
-pull the app from git and navigate the  the directory its in and run npm install on the cmd line
-then navigate a folder deeper into Meal_Plan/client and run npm install again
-then cd .. back a folder and run npm run dev
-then it will open localhost:3000 in your browser

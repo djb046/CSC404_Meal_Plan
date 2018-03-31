@@ -8,10 +8,12 @@ var util = require('util');
 var AmazonStrategy = require('passport-amazon').Strategy;
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var methodOverride = require('method-override')
+var methodOverride = require('method-override');
+var mysql = require('mysql');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var db = require('./routes/db');
 
 var AMAZON_CLIENT_ID = "amzn1.application-oa2-client.c84a394dab3c4fea9d228b3881caf672"
 var AMAZON_CLIENT_SECRET = "7f09ba172422925cc657d73fb59bcd1384a22a6f74190bd8cefec554a7fea5f4";
@@ -80,6 +82,11 @@ app.get('/', function(req, res){
   res.render('index', { user: req.user });
 });
 
+app.get('/', function(req, res)
+{
+  console.log("test");
+});
+
 app.get('/account', ensureAuthenticated, function(req, res){
   res.render('account', { user: req.user });
 });
@@ -109,6 +116,15 @@ app.get('/auth/amazon/callback',
   passport.authenticate('amazon', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');
+    db.getConnection(function(err, mclient) { //"'+id+'", "'+displayName+'"
+      mclient.query('INSERT INTO amazonAuth(id, name) VALUES ("'+req.user.id+'", "'+req.user.displayName+'") ON DUPLICATE KEY UPDATE amazonAuth.name = amazonAuth.name', function (err, rows, fields)
+        {
+          
+         if (err) throw err;
+        
+        console.log("Checking in database for adding new user...");
+        });
+    });
   });
 
 app.get('/logout', function(req, res){
@@ -139,6 +155,30 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+// app.post('/newUser', function (req, res) 
+// {
+
+// console.log("TEST");
+// var newUserq = "INSERT INTO amazonAuth(id, name) VALUES ('test', 'test') ON DUPLICATE KEY UPDATE amazonAuth.name = amazonAuth.name";
+// // connection.query('INSERT INTO amazonAuth WHERE NOT EXISTS (SELECT * FROM amazonAuth WHERE id = "test" LIMIT 1) VALUES (?)', "test", "test", function(err, result)
+// connection.query(newUserq, function(err, result)
+// {
+// if(err) throw err
+//   console.log("inserted user")
+// });
+
+// });
+
+db.getConnection(function(err, mclient) {
+  mclient.query('SELECT * FROM userData', function (err, rows, fields)
+    {
+      
+    if (err) throw err
+    
+    console.log("Test WORKS")
+    });
 });
 
 module.exports = app;

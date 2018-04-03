@@ -13,6 +13,7 @@ var mysql = require('mysql');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+// var surveyRouter = require('./routes/survey');
 //var create_meal_plan = require('./routes/create-meal-plan');
 var db = require('./routes/db');
 
@@ -82,10 +83,10 @@ app.get('/', function(req, res){
   res.render('index', { user: req.user });
 });
 
-app.get('/', function(req, res)
-{
-  console.log("test");
-});
+ app.get('/survey', function(req, res)
+ {
+   res.render('survey', { user: req.user });
+ });
 
 app.get('/account', ensureAuthenticated, function(req, res){
   res.render('account', { user: req.user });
@@ -119,7 +120,6 @@ app.get('/auth/amazon',
 app.get('/auth/amazon/callback', 
   passport.authenticate('amazon', { failureRedirect: '/login' }),
   function(req, res) {
-    res.redirect('/');
     db.getConnection(function(err, mclient) {//"'+id+'", "'+displayName+'"
       mclient.query('INSERT INTO amazonAuth(id, name) VALUES ("'+req.user.id+'", "'+req.user.displayName+'") ON DUPLICATE KEY UPDATE amazonAuth.name = amazonAuth.name ', function (err, rows, fields)
         {
@@ -145,12 +145,12 @@ app.get('/auth/amazon/callback',
        if (rows[0].new == 0)
        {
         console.log("Found a new user");
-        // redirect to survey here
+        res.redirect('/survey');
        }
        else
        {
          console.log("Found a old user");
-         // go to user dashboard?
+         res.redirect('/');
        }
        
        // when survey completed.

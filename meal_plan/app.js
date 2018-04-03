@@ -13,6 +13,7 @@ var mysql = require('mysql');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+//var create_meal_plan = require('./routes/create-meal-plan');
 var db = require('./routes/db');
 
 var AMAZON_CLIENT_ID = "amzn1.application-oa2-client.c84a394dab3c4fea9d228b3881caf672"
@@ -77,7 +78,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
 app.get('/', function(req, res){
   res.render('index', { user: req.user });
 });
@@ -93,6 +93,10 @@ app.get('/account', ensureAuthenticated, function(req, res){
 
 app.get('/login', function(req, res){
   res.render('login', { user: req.user });
+});
+
+app.get('/create-meal-plan', function(req, res){
+  res.render('create-meal-plan', {});
 });
 
 // GET /auth/amazon
@@ -162,6 +166,7 @@ app.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
 });
+
 // Simple route middleware to ensure user is authenticated.
 //   Use this route middleware on any resource that needs to be protected.  If
 //   the request is authenticated (typically via a persistent login session),

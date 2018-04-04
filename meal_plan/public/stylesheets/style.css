@@ -1,5 +1,6 @@
 body {
   background-color:	#fef4e2;
+  background-image: url("images/bacon.jpg") repeat 0 0;
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }

@@ -100,6 +100,11 @@ app.get('/create-meal-plan', function(req, res){
   res.render('create-meal-plan', {});
 });
 
+app.get('/test', function(req, res){
+  res.render('test', {});
+});
+
+
 // GET /auth/amazon
 //   Use passport.authenticate() as route middleware to authenticate the
 //   request.  The first step in Amazon authentication will involve

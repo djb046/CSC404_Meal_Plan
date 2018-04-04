@@ -1,6 +1,7 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 </head>
+
 <% if (!user) { %>
 <div align ='middle'>
 	<h2>Welcome! Please log in.</h2>
@@ -9,9 +10,14 @@
 		width="156" height="32" /></a></div> 
 <% } else { %>
 	<h2>Hello, <%= user.displayName %>.</h2>
-	<a href ="/create-meal-plan">Generate a new mealplan</a>
+
+
+	<a href ="/create-meal-plan">Generate a New Meal Plan</a>
+
+	<a href ="/logout">Log Out</a>
+
 <% } %>
- 
+
 
 
 

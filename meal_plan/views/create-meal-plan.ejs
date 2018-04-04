@@ -5,19 +5,31 @@
 		<title>
 			Create Meal Plan
 		</title>
-		<style>
-			
-		</style>
+		<script>
+
+			function addFood(meal) {
+				<!-- temporary cheese method for demo -->
+				if(meal == 'new'){
+					document.getElementById('breakfast').style.display='';
+					document.getElementById('lunch').style.display='';
+					document.getElementById('dinner').style.display='';
+				}
+
+				document.getElementById(meal).style.display='';
+
+				
+			}
+		</script>
 	</head>
 	<body>
 		<center>
 			<h1> Create New Meal Plan </h1>
 			<!-- Would be used to generate a new meal card for each meal -->
-			<button class="button"><span>Create Plan</span></button>
+			<button class="button" onClick = "addFood('new')"><span>Create Plan</span></button>
 		</center>
 
 		<h2 style="text-indent: 10%;"> Breakfast </h2>
-		<div class="meal_card">
+		<div class="meal_card" id=breakfast>
 		  <img src="images/bacon.jpg" alt="food" style="width:20%; ">
 		  <span class="removebtn" onClick="this.parentElement.style.display='none'">&times;</span>
 		  <div class="container" style="vertical-align: sub;">
@@ -41,11 +53,11 @@
 		  </div>
 
 		  <!-- Will be used to manually add a food, if it meets the requirements of the diet -->
-		  <button class="button" style="margin-left:15%;font-size: 25px;padding: 10px;">
+		  <button id=add_food class="button" style="margin-left:15%;font-size: 25px;padding: 10px;" onClick="addFood('breakfast')">
 		  <span>Add item</span></button>
 
 		 <h2 style="text-indent: 10%;"> Lunch </h2>
-		<div class="meal_card">
+		<div class="meal_card" id='lunch'>
 		  <img src="images/bacon.jpg" alt="food" style="width:20%; ">
 		  <span class="removebtn" onClick="this.parentElement.style.display='none'">&times;</span>
 		  <div class="container" style="vertical-align: sub;">
@@ -69,13 +81,12 @@
 		  </div>
 
 		  <!-- Will be used to manually add a food, if it meets the requirements of the diet -->
-		  <button class="button" style="margin-left:15%;font-size: 25px;padding: 10px;" 
-		  	onClick="">
+		  <button id=add_food class="button" style="margin-left:15%;font-size: 25px;padding: 10px;" onClick="addFood('lunch')">
 		  	<span>Add item</span>
 		  </button>
 
 		  <h2 style="text-indent: 10%;"> Dinner </h2>
-		<div class="meal_card">
+		<div class="meal_card" id=dinner>
 		  <img src="images/bacon.jpg" alt="food" style="width:20%; ">
 		  <span class="removebtn" onClick="this.parentElement.style.display='none'">&times;</span>
 		  <div class="container" style="vertical-align: sub;">
@@ -98,12 +109,18 @@
 		  	</div>
 		  </div>
 		  <!-- Will be used to manually add a food, if it meets the requirements of the diet -->
-		  <button class="button" style="margin-left:15%;font-size: 25px;padding: 10px;">
+		  <button id = add_food class="button" style="margin-left:15%;font-size: 25px;padding: 10px;" onClick="addFood('dinner')">
 		  <span>Add item</span>
 		  </button>
 		</div>
 
-
+		<br/><br/><br/>
+		<center>
+		<!-- Will be used to save the meal -->
+		<button id = save_meal class="button" style='width:50%' onClick="location.href='/';">
+		  <span>Save Meal Plan</span>
+		  </button>
+		 </center>
 	</body>
 </html>
 

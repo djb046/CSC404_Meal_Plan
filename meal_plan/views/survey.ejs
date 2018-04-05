@@ -8,30 +8,67 @@
     age: '',
     activityLevel: '',
     allergies: '' -->
-<form align = 'middle' action="/">
+<form align = 'middle' action="/submitsurvey" method="POST">
     <h1>New User Survey</h1>
     Gender:
-    <input type="text" name="gender" value="">
+    <select 
+    name = "gender"
+    id = "gender"
+    >
+    
+        <option value="" disabled selected> -- select an option -- </option>
+        <option value="male">male</option>
+        <option value="female">female</option>
+        <option value="other">other</option>
+
+    </select>
     <br>
     <br>
     Height:
-    <input type="text" name="height" value="">
+    <input 
+                name = "height"
+                id = "height"
+                placeholder="#'# (feet'inches)"
+                value=""
+				/>
     <br>
     <br>
     Weight:
-    <input type="text" name="weight" value="">
+    <input 
+                name = "weight"
+                id = "weight"
+                placeholder='### (in lbs)' 
+                value="" 
+				/>
     <br>
     <br>
     Age:
-    <input type="text" name="age" value="">
+    <input 
+    name = "age"
+    id = "age"
+    placeholder='In years'
+    />
     <br>
     <br>
     Activity Level:
-    <input type="text" name="active" value="">
+    <select 
+                name = "activityLevel"
+                id = "activityLevel"
+                value="" 
+				>
+					<option value="" disabled selected> -- select an option -- </option>
+					<option value="sedentary">sedentary</option>
+					<option value="moderate">moderate</option>
+					<option value="high">high</option>
+				</select>
     <br>
     <br>
     Allergies:
-    <input type="text" name="allergies" value="">
+    <input type="text" id="allergies" name="allergies" placeholder="List allergies" value="">
+    <br><br>
+
+    Ethnicity:
+    <input type="text" id="ethnicity" name="ethnicity" placeholder="ignore for now" value="">
     <br><br>
     <button>Submit</button>
 

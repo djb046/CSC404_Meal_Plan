@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 //ENTRANCE SURVEY
 //By Dylan Campbell
 

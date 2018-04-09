@@ -1,4 +1,73 @@
 <html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    </head>
 
+<a href="/">Home</a>
+<form action="/edit-meal-plan">
+    Gender:
+    <select 
+    name = "gender"
+    id = "gender"
+    value = "<%= results.gender %>"
+    >
+    
+        <option value="" disabled selected> -- select an option -- </option>
+         <option value="male">male</option> 
+         <option value="female">female</option> 
+         <option value="other">other</option>
 
+    </select>
+<br>
+<br>
+Height:
+<input 
+            name = "height"
+            id = "height"
+            placeholder="#'# (feet'inches)"
+            value="<%= results.height %>"
+            />
+<br>
+<br>
+Weight
+<input 
+name = "weight"
+id = "weight"
+placeholder='### (in lbs)' 
+value="<%= results.weight %>" 
+/>
+<br>
+<br>
+Age:
+<input 
+name = "age"
+id = "age"
+placeholder='In years'
+value="<%= results.age %>"
+/>
+<br>
+<br>
+Activity Level:
+<select 
+            name = "activityLevel"
+            id = "activityLevel"
+            value="<%= results.activityLevel %>" 
+            >
+                <option value="" disabled selected> -- select an option -- </option>
+                <option value="sedentary">sedentary</option>
+                <option value="moderate">moderate</option>
+                <option value="high">high</option>
+            </select>
+<br>
+<br>
+Allergies:
+<input type="text" 
+id="allergies" 
+name="allergies" 
+placeholder="List allergies" 
+value="<%= results.allergies %>">
+<br>
+<br>
+<button>Submit</button>
+</form>
 </html>

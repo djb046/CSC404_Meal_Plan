@@ -100,7 +100,24 @@ app.get('/login', function(req, res){
 });
 
 app.get('/create-meal-plan', function(req, res){
-  res.render('create-meal-plan', {});
+  db.getConnection(function(err, mclient) {
+    mclient.query('SELECT * FROM meals', function (err, rows, fields)
+   {
+        mclient.release();
+       
+      if (err) throw err;
+
+      
+     console.log(rows[0]);
+     res.render('create-meal-plan', { user: req.user,
+                         results: rows[0]//,
+                      // results2: rows[1],
+                      // results3: rows[2]}
+     });
+     });
+ 
+ });
+  
 });
 
 app.get('/test', function(req, res){

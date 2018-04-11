@@ -14,13 +14,19 @@
 	<h2>Hello, <%= user.displayName %>.</h2>
 
 
-	<a href ="/create-meal-plan">Generate a New Meal Plan</a>
+	<!-- <a href ="/create-meal-plan">Generate a New Meal Plan</a> -->
 
 	<a href="/view-meal-plan">View Meal Plan</a>
 	
 	<a href="/edit-user-info">Account Settings</a>
 
 	<a href ="/logout">Log Out</a>
+	<br>
+
+	<p>Setup for a meal plan</p>
+	<form action="/create-meal-plan" method="get">
+	<button type="submit" >Generate Meal Plan</button>
+	</form>
 
 <% } %>
 

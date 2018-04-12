@@ -3,7 +3,8 @@ var SRC = path.resolve(__dirname, 'jsx');
 module.exports = {
   entry: {
     dashboard: './jsx/dashboard.jsx',
-    login: './jsx/dashboard.jsx'
+    login: './jsx/login.jsx',
+    survey: './jsx/survey.jsx'
   },
   output: {
     path: path.resolve(__dirname, 'views/build'),

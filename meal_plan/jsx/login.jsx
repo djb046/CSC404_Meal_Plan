@@ -1,10 +1,10 @@
 import BackgroundSlideshow from 'react-background-slideshow'
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import mater from './mater.jpg'
-import picnic from './picnic.jpg'
-import rav from './images/rav.jpg'
-import tater from './tater.jpg'
+// import mater from './mater.jpg'
+// import picnic from './picnic.jpg'
+// import rav from './images/rav.jpg'
+// import tater from './tater.jpg'
 
 
 class Login extends React.Component {

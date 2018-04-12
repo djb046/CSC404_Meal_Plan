@@ -81,41 +81,43 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'views')));
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(express.static(path.join(__dirname, 'jsx')));
+app.use(express.static(path.join(__dirname, 'jsx/images')));
 
 app.get('/', function(req, res){
   res.render('index', { user: req.user });
 });
 
- app.get('/survey', function(req, res)
- {
-   res.render('survey', { user: req.user });
- });
+//  app.get('/survey', function(req, res)
+//  {
+//    res.render('survey', { user: req.user });
+//  });
 
-app.get('/account', ensureAuthenticated, function(req, res){
-  res.render('account', { user: req.user });
-});
+// app.get('/account', ensureAuthenticated, function(req, res){
+//   res.render('account', { user: req.user });
+// });
 
-app.get('/login', function(req, res){
-  res.render('login', { user: req.user });
-});
+// app.get('/login', function(req, res){
+//   res.render('login', { user: req.user });
+// });
 
-app.get('/create-meal-plan', function(req, res){
-  res.render('create-meal-plan', {});
-});
+// app.get('/create-meal-plan', function(req, res){
+//   res.render('create-meal-plan', {});
+// });
 
-app.get('/test', function(req, res){
-  res.render('test', {});
-});
+// app.get('/test', function(req, res){
+//   res.render('test', {});
+// });
 
-app.get('/view-meal-plan', function(req, res)
-{
-res.render('view-meal-plan', {});
-});
+// app.get('/view-meal-plan', function(req, res)
+// {
+// res.render('view-meal-plan', {});
+// });
 
-app.get('/edit-user-info', function(req, res)
-{
-res.render('userinfo', {user: req.user})
-});
+// app.get('/edit-user-info', function(req, res)
+// {
+// res.render('userinfo', {user: req.user})
+// });
+
 
 app.post('/submitsurvey', function(req, res)
 {
@@ -256,14 +258,14 @@ app.use(function(err, req, res, next) {
 
 // });
 
-db.getConnection(function(err, mclient) {
-  mclient.query('SELECT * FROM userData', function (err, rows, fields)
-    {
+// db.getConnection(function(err, mclient) {
+//   mclient.query('SELECT * FROM userData', function (err, rows, fields)
+//     {
       
-    if (err) throw err
+//     if (err) throw err
     
-    console.log("Test WORKS")
-    });
-});
+//     console.log("Test WORKS")
+//     });
+// });
 
 module.exports = app;

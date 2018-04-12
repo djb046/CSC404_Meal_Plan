@@ -1,12 +1,13 @@
 const path = require('path');
-
+var SRC = path.resolve(__dirname, 'jsx');
 module.exports = {
   entry: {
-    app: './jsx/yaya.jsx'
+    dashboard: './jsx/dashboard.jsx',
+    login: './jsx/dashboard.jsx'
   },
   output: {
     path: path.resolve(__dirname, 'views/build'),
-    filename: 'app.bundle.js'
+    filename: '[name].bundle.js'
   },
   module: {
     rules: [
@@ -16,7 +17,12 @@ module.exports = {
         use: {
           loader: "babel-loader"
         }
+      }, {
+        test: /\.(jpe?g|png|gif|mp3)$/i,
+        include: SRC,
+        loaders: ['file-loader']
       }
+
     ]
   }
 }

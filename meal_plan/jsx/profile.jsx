@@ -7,7 +7,7 @@ const Profile = () => (
     <Grid columns='equal' style={{ margin: '1%' }}>
         <Grid.Row columns={2} relaxed='true' verticalAlign='middle'>
             <Grid.Column width={8}>            
-                <Image src="./tater.jpg" bordered size='large'/>                
+                <Image src="./tyronebiggums.jpg" bordered size='large'/>                
             </Grid.Column>
             <Grid.Column width={8}>
             <Button inverted color='blue'>Edit Profile</Button>

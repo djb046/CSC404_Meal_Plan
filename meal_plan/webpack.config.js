@@ -19,7 +19,7 @@ module.exports = {
           loader: "babel-loader"
         }
       }, {
-        test: /\.(jpe?g|png|gif|mp3)$/i,
+        test: /\.(jpe?g|png|gif|mp3)$/,
         include: SRC,
         loaders: ['file-loader']
       }

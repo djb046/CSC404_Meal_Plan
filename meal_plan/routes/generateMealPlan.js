@@ -18,11 +18,11 @@ calculateBEE()
 {
   var BEE = 0;
   if (0 = 0/*the user is a female use this equation*/) {
-    return BEE = (655 + (4.35 * 1/* USER WEIGHT HERE */) + (4.7 * 1/* USER HEIGHT HERE  */) - (4.7 * 1/*USER HEIGHT HERE (in inches) */));
+    return BEE = (655 + (4.35 * 1/* USER WEIGHT HERE */) + (4.7 * 1/* USER HEIGHT HERE  */) - (4.7 * 1/*USER AGE HERE (in years) */));
 
   }
   else if (0 = 1/*the user is a male use this equation*/) {
-    return BEE = (66 + (6.23 * 1/* USER WEIGHT HERE */) + (12.7 * 1/* USER HEIGHT HERE  */) - (6.8 * 1/*USER HEIGHT HERE (in inches) */));
+    return BEE = (66 + (6.23 * 1/* USER WEIGHT HERE */) + (12.7 * 1/* USER HEIGHT HERE  */) - (6.8 * 1/*USER AGE HERE (in years) */));
     //This is why we can not account for 'other'
   }
 }

@@ -14,14 +14,14 @@ router.get('/', function (req, res, next) {
 //Generally this is how much a person will burn without any exercise
 
 //if statments need to be replaced with proper ones, and the 1's within equation should be replaced.
-calculateBEE()
+function calculateBEE()
 {
   var BEE = 0;
-  if (0 = 0/*the user is a female use this equation*/) {
+  if (0 == 0/*the user is a female use this equation*/) {
     return BEE = (655 + (4.35 * 1/* USER WEIGHT HERE */) + (4.7 * 1/* USER HEIGHT HERE  */) - (4.7 * 1/*USER AGE HERE (in years) */));
 
   }
-  else if (0 = 1/*the user is a male use this equation*/) {
+  else if (0 == 1/*the user is a male use this equation*/) {
     return BEE = (66 + (6.23 * 1/* USER WEIGHT HERE */) + (12.7 * 1/* USER HEIGHT HERE  */) - (6.8 * 1/*USER AGE HERE (in years) */));
     //This is why we can not account for 'other'
   }
@@ -34,13 +34,13 @@ var BMR = 0
 // this will require us to incorperate the activity level of the user, every activity level has a 
 
 //if statments need to be replaced with proper ones, and the 1's within equation should be replaced.
-calculateBMR()
+function calculateBMR()
 {
   var activityLevel = 1.2; // might make this an int value to save within the database to make it easy
   var level = 0;
-  if (0 = 0/*check the activity level*/) {
+  if (0 == 0/*check the activity level*/) {
     level = level;
-  } else if (0 = 1) {
+  } else if (0 == 1) {
     level = level + 1;
   } //continue this, might change to set a value once a activity level is selected during survey.
   // there are 5 levels of activity:
@@ -62,21 +62,21 @@ calculateBMR()
 var calorieIntake = 0;
 var neededCalories = 0;
 // after we have calculated the BMR we can move on to actual generation of meal plan, this will be based on diet
-generateMealPlan()
+function generateMealPlan()
 {
   // here we will let them decide, based on their diet type, we can take a quick survey of the current diet type
   // when they click generate a meal plan because this can change very regularly
 
-  if (0 = 0 /* check if the diet type == maintainWeight*/) {
+  if (0 == 0 /* check if the diet type == maintainWeight*/) {
     // this means that they do not need to change amount of calories burn, so essentially calorieLoss = regular loss
     calorieIntake = this.calculateBMR();
-  } else if (0 = 1 /*check if the diet type == weightGain*/) {
+  } else if (0 == 1 /*check if the diet type == weightGain*/) {
     // to gain weight we must add around 500 calories (this is a changing factor) to the intake amount
     // for this we will need to ask them again in the quick survey if this diet is selected how main pounds
     // are they trying to gain, normal (healthy) amount are 0.5lb (+250 calories) and 1lb (+500 calories) a week
     neededCalories = 500 /* 250 ?*/; //again we will check and change this value depending on amount loss
     calorieIntake = this.calculateBMR() + neededCalories;
-  } else if (0 = 2)
+  } else if (0 == 2)
   {
     // to lose weight we must subtract around 500 calories(this is a changing factor) to the intake amount
     // for this we will need to ask them again in the quick survey if this diet is selected how main pounds

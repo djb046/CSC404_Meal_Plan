@@ -41,11 +41,12 @@ class Survey extends React.Component {
     
             }
           }).then(function (response) {
-            window.loaction = window.loaction.origin + '/dashboard';
+            console.log(response);
+            location.href = '/dashboard';
           })
           .catch(function (error) {
             console.log(error);
-          });;
+          });
     }
 
     render() {

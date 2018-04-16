@@ -16,13 +16,13 @@ router.post('/submit', function (req, res) {
 
   });
   db.getConnection(function (err, mclient) {
+
     mclient.query('Update amazonAuth SET new = 1 WHERE id="' + req.user.id + '"', function (err, rows, fields) {
       mclient.release();
       if (err) throw err;
       console.log("Updated " + req.user.id + " to old member");
       
     });
-
   });
 
 })

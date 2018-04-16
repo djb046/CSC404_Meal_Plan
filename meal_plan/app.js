@@ -117,8 +117,8 @@ app.get('/auth/amazon/callback',
   passport.authenticate('amazon', { failureRedirect: '/login' }),
   function (req, res) {
     db.getConnection(function (err, mclient) {//"'+id+'", "'+displayName+'"
-      mclient.query('INSERT INTO amazonAuth(id, name) VALUES ("' + req.user.id + '", "' + req.user.displayName + '") ON DUPLICATE KEY UPDATE amazonAuth.name = amazonAuth.name ', function (err, rows, fields) {
-        mclient.release();
+      mclient.query('INSERT INTO amazonAuth(id, name, new) VALUES ("' + req.user.id + '", "' + req.user.displayName + '", 0) ON DUPLICATE KEY UPDATE amazonAuth.name = amazonAuth.name ', function (err, rows, fields) {
+         //mclient.release();
 
         if (err) throw err;
 
@@ -129,21 +129,21 @@ app.get('/auth/amazon/callback',
 
     db.getConnection(function (err, mclient) {
 
-
+      console.log(req.user.id);
       mclient.query('SELECT new FROM amazonAuth WHERE amazonAuth.id = "' + req.user.id + '"', function (err, rows, fields) {
-        mclient.release();
+        
 
         if (err) throw err;
-
+        console.log(rows[0]);
         if (rows[0].new == 0) {
           console.log("Found a new user");
           res.redirect('/survey');
         }
         else {
           console.log("Found a old user");
-          res.redirect('/');
+          res.redirect('/dashboard');
         }
-
+        mclient.release();
         // when survey completed.
         // UPDATE `mealplan`.`amazonAuth` SET `new`='1' WHERE `id`='amzn1.account.AGC5T3ZS5AH3GDLS76LY4ICG325Q';
 

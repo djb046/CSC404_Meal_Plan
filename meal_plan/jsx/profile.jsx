@@ -10,12 +10,12 @@ const Profile = () => (
                 <Image src="./tyronebiggums.jpg" bordered size='large'/>                
             </Grid.Column>
             <Grid.Column width={8}>
-            <Button inverted color='blue' className='dashButton1' >Edit Profile</Button>
+            <Button inverted color='blue' className='dashButton1' href='/survey' >Edit Profile</Button>
             <Button inverted color='blue' className='dashButton1' >Edit Hub</Button>
             </Grid.Column>
         </Grid.Row>
         <Grid.Row columns='equal' verticalAlign= 'center'>
-        <Button inverted color='blue' className='dashButton2' >View Meal Plan</Button>
+        <Button inverted color='blue' className='dashButton2' href= '/viewMealPlan'>View Meal Plan</Button>
         <Button inverted color='blue' className='dashButton2' >Edit Meal Plan</Button>
         <Button inverted color='blue' className='dashButton2' href='/createMealPlan' >Generate Meal Plan</Button>
         

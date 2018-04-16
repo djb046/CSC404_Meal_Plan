@@ -19,4 +19,4 @@ class Login extends React.Component {
   }
 }
 
-ReactDOM.render(<Login />, document.getElementById('login'));
+ReactDOM.render(<Login />, document.getElementById('dashboard'));

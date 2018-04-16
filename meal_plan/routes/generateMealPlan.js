@@ -9,6 +9,7 @@ gender = '';
 activityLevel = 0;
 BEE = 0;
 dietType = '';
+calorieIntake = 0;
 
 router.post('/submit',function (req, res) {
   db.getConnection(function (err, mclient) {
@@ -23,8 +24,8 @@ router.post('/submit',function (req, res) {
       mclient.release();
       if (err) throw err;
       weight = rows[0].weight;
-      // height = rows[0].height;
-      height = 50
+      height = rows[0].height;
+      // height = 50
       age = rows[0].age;
       gender = rows[0].gender;
       activityLevel = rows[0].activityLevel;
@@ -32,6 +33,7 @@ router.post('/submit',function (req, res) {
       // console.log("Changed diet type of " + req.user.id + " to "+req.body.goal+" ");
     console.log(calculateBEE());
     console.log(calculateBMR());
+    console.log(generateMealPlan());
   });
   });
   // req.body == { goal: 'Weight Loss', activityLevel: 'Lightly active' }
@@ -66,6 +68,7 @@ var BMR = 0
 // this will require us to incorperate the activity level of the user, every activity level has a 
 
 //if statments need to be replaced with proper ones, and the 1's within equation should be replaced.
+
 function calculateBMR()
 { 
 
@@ -82,24 +85,24 @@ function calculateBMR()
 }
 
 
-var calorieIntake = 0;
-var neededCalories = 0;
+neededCalories = 0;
 // after we have calculated the BMR we can move on to actual generation of meal plan, this will be based on diet
 function generateMealPlan()
 {
+  console.log(dietType);
   // here we will let them decide, based on their diet type, we can take a quick survey of the current diet type
   // when they click generate a meal plan because this can change very regularly
 
-  if (0 == 0 /* check if the diet type == maintainWeight*/) {
+  if (dietType == 'maintain' /* check if the diet type == maintainWeight*/) {
     // this means that they do not need to change amount of calories burn, so essentially calorieLoss = regular loss
     calorieIntake = calculateBMR();
-  } else if (0 == 1 /*check if the diet type == weightGain*/) {
+  } else if (dietType == 'gain' /*check if the diet type == weightGain*/) {
     // to gain weight we must add around 500 calories (this is a changing factor) to the intake amount
     // for this we will need to ask them again in the quick survey if this diet is selected how main pounds
     // are they trying to gain, normal (healthy) amount are 0.5lb (+250 calories) and 1lb (+500 calories) a week
     neededCalories = 500 /* 250 ?*/; //again we will check and change this value depending on amount loss
     calorieIntake = calculateBMR() + neededCalories;
-  } else if (0 == 2)
+  } else if (dietType == 'loss')
   {
     // to lose weight we must subtract around 500 calories(this is a changing factor) to the intake amount
     // for this we will need to ask them again in the quick survey if this diet is selected how main pounds
@@ -117,7 +120,7 @@ function generateMealPlan()
 
   // also we need to check for allergies and account for this in some way, but that can be handled later
   // once we nail down the functionality of this.
-
+return calorieIntake;
 }
 
 router.post('/generate', function(req, res)

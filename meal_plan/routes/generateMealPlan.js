@@ -6,6 +6,10 @@ router.get('/', function (req, res, next) {
   console.log('the route works');
 });
 
+router.post('/submit',function (req, res) {
+  console.log(req.body);
+  // req.body == { goal: 'Weight Loss', activityLevel: 'Lightly active' }
+});
 
 // Calories for user set up as two functions to sort of understand what we are doing with the values, 
 //can be collpased later

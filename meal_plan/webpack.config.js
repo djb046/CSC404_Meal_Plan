@@ -4,7 +4,8 @@ module.exports = {
   entry: {
     dashboard: './jsx/dashboard.jsx',
     login: './jsx/login.jsx',
-    survey: './jsx/survey.jsx'
+    survey: './jsx/survey.jsx',
+    create: './jsx/createNewMealPlan.jsx'
   },
   output: {
     path: path.resolve(__dirname, 'views/build'),

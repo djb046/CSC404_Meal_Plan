@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 // import {Grid, Row, Col, Jumbotron} from 'react-bootstrap';
 import { Container, Grid, Card, Icon, Image, Menu, Progress } from 'semantic-ui-react';
 import Profile from './profile.jsx';
+import NavBar from './navBar.jsx';
 
 
 class Dashboard extends React.Component {
@@ -16,11 +17,7 @@ class Dashboard extends React.Component {
 
     return (
       <Container fluid>
-        <Menu inverted>
-          <Menu.Item name='home' />
-          <Menu.Item name='messages' />
-          <Menu.Item name='friends' />
-        </Menu>
+        <NavBar></NavBar>
         <Grid divided='vertically' centered>
           <Grid.Row columns={3} >
             <Grid.Column>

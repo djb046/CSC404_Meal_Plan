@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
+var db = require('./db.js')
 
 
 router.get('/', function (req, res, next) {
-  console.log('the route works');
+  res.render('generate-meal-plan', {});
 });
 
 router.post('/submit',function (req, res) {
@@ -100,5 +101,16 @@ function generateMealPlan()
   // once we nail down the functionality of this.
 
 }
+
+router.post('/generate', function(req, res)
+{
+  db.getConnection(function (err, mclient) {
+    mclient.query('SELECT * mealplan_breakfast', function (err, rows, fields) {
+      mclient.release();
+      if (err) throw err;
+      console.log(rows[0]);
+    });
+  });
+});
 
 module.exports = router

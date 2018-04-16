@@ -42,7 +42,8 @@ class Create extends React.Component {
                 activityLevel: this.state.actLevel
             }
         }).then(function (response) {
-            window.loaction = window.loaction.origin + '/dashboard';
+            location.href = '/viewMealPlan';
+            console.log(location);
         })
             .catch(function (error) {
                 console.log(error);
@@ -51,10 +52,14 @@ class Create extends React.Component {
 
     render() {
         const goalOpts = [
-            { text: 'Weight Loss', value: 'Weight Loss' }, { text: 'Weight Gain', value: 'Weight Gain' }, { text: 'Weight Maintain', value: 'Weight Maintain' }
+            { text: 'Weight Loss', value: 'loss' }, { text: 'Weight Gain', value: 'gain' }, { text: 'Weight Maintain', value: 'maintain' }
         ]
         const activityLevelOpts = [
-            { text: 'Sedentary (little or no exercise)', value: 'Sedentary' }, { text: 'Lightly active (light exercise/sports 1-3 days/week)', value: 'Lightly active' }, { text: 'Moderately active (moderate exercise/sports 3-5 days/week)', value: 'Moderately active' }, { text: 'Very active (hard exercise/sports 6-7 days a week)', value: 'Very active' }, { text: 'Extra active (very hard exercise/sports & physical job or 2x training)', value: 'Extra active' }
+            { text: 'Sedentary (little or no exercise)', value: '1.2' }, 
+            { text: 'Lightly active (light exercise/sports 1-3 days/week)', value: '1.375' }, 
+            { text: 'Moderately active (moderate exercise/sports 3-5 days/week)', value: '1.55' }, 
+            { text: 'Very active (hard exercise/sports 6-7 days a week)', value: '1.725' }, 
+            { text: 'Extra active (very hard exercise/sports & physical job or 2x training)', value: '1.9' }
         ]
 
         return (

@@ -8,6 +8,7 @@ router.get('/', function (req, res, next) {
 
 router.post('/submit', function (req, res) {
   db.getConnection(function (err, mclient) {
+    console.log(req.body);
     mclient.query('INSERT INTO userData(UserID, gender, height, weight, age, activityLevel, allergies) VALUES ("' + req.user.id + '", "' + req.body.gender + '", "' + req.body.height + '", "' + req.body.weight + '", "' + req.body.age + '", "' + req.body.activityLevel + '", "' + req.body.allergies + '")', function (err, rows, fields) {
       mclient.release();
       if (err) throw err;
@@ -21,9 +22,10 @@ router.post('/submit', function (req, res) {
       mclient.release();
       if (err) throw err;
       console.log("Updated " + req.user.id + " to old member");
-      
+      res.redirect('/dashboard');
     });
   });
+  
 
 })
 module.exports = router

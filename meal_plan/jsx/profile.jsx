@@ -17,6 +17,7 @@ const Profile = () => (
         <Grid.Row columns='equal' verticalAlign= 'center'>
         <Button inverted color='blue' className='dashButton2' >View Meal Plan</Button>
         <Button inverted color='blue' className='dashButton2' >Edit Meal Plan</Button>
+        <Button inverted color='blue' className='dashButton2' href='/createMealPlan' >Generate Meal Plan</Button>
         
         </Grid.Row>
         

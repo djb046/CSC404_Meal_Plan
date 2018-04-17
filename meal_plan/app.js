@@ -75,6 +75,7 @@ app.use(express.static(path.join(__dirname, 'views')));
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(express.static(path.join(__dirname, 'jsx')));
 app.use(express.static(path.join(__dirname, 'jsx/images')));
+// app.use(express.static(path.join(__dirname, 'jsx')));
 
 app.use('/generateMealPlan', generateMealPlan);
 app.use('/survey', survey);
@@ -100,6 +101,9 @@ app.get('/test', function (req, res) {
   res.render('test', {});
 });
 
+app.get('/testNutes', function (req, res) {
+  res.render('nutritionTest', {});
+});
 
 app.get('/auth/amazon',
   passport.authenticate('amazon', { scope: ['profile', 'postal_code'] }),

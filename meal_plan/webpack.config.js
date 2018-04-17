@@ -6,7 +6,8 @@ module.exports = {
     login: './jsx/login.jsx',
     survey: './jsx/survey.jsx',
     create: './jsx/createNewMealPlan.jsx',
-    nutritionxTest: './jsx/nutxTest.jsx'
+    nutritionxTest: './jsx/nutxTest.jsx',
+    view: './jsx/viewMealPlan.jsx'
   },
   output: {
     path: path.resolve(__dirname, 'views/build'),

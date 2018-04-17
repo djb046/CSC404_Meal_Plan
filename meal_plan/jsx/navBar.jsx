@@ -16,9 +16,12 @@ class NavBar extends React.Component {
 
     return (
         <Menu inverted>
-          <Menu.Item name='home' />
+          <Menu.Item name='home' href="/dashboard" />
           <Menu.Item name='messages' />
           <Menu.Item name='friends' />
+          <Menu.Menu position='right'>
+          <Menu.Item name='logout' href='logout'/>
+          </Menu.Menu>
         </Menu>
     );
   }

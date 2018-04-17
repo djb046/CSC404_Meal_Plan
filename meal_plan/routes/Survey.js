@@ -8,8 +8,7 @@ router.get('/', function (req, res, next) {
 
 router.post('/submit', function (req, res) {
   db.getConnection(function (err, mclient) {
-    console.log(req.body);
-    mclient.query('INSERT INTO userData(UserID, gender, height, weight, age, activityLevel, allergies) VALUES ("' + req.user.id + '", "' + req.body.gender + '", "' + req.body.height + '", "' + req.body.weight + '", "' + req.body.age + '", "' + req.body.activityLevel + '", "' + req.body.allergies + '")', function (err, rows, fields) {
+    mclient.query('INSERT INTO userData(UserID, gender, height, weight, age, activityLevel, allergies) VALUES ("' + req.user.id + '", "' + req.body.gender + '", "' + calcHeight(req.body.height) + '", "' + req.body.weight + '", "' + req.body.age + '", "' + req.body.activityLevel + '", "' + req.body.allergies + '")', function (err, rows, fields) {
       mclient.release();
       if (err) throw err;
       console.log("Added survey information for: " + req.user.id);
@@ -28,4 +27,18 @@ router.post('/submit', function (req, res) {
   
 
 })
+
+function calcHeight(f)
+{
+  var rex = /^(\d+)'(\d+)(?:''|")$/;
+  var match = rex.exec(f);
+  var feet, inch, total;
+  if (match) {
+    feet = parseInt(match[1], 10);
+    inch = parseInt(match[2], 10);
+    total = (feet*12) + inch;
+    console.log(total);
+    return total;
+  }
+}
 module.exports = router

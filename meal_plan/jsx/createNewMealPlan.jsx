@@ -71,7 +71,9 @@ class Create extends React.Component {
 
     render() {
         const goalOpts = [
-            { text: 'Weight Loss', value: 'loss' }, { text: 'Weight Gain', value: 'gain' }, { text: 'Weight Maintain', value: 'maintain' }
+            { text: 'Weight Loss', value: 'loss' }, 
+            { text: 'Weight Gain', value: 'gain' }, 
+            { text: 'Weight Maintain', value: 'maintain' }
         ]
         const activityLevelOpts = [
             { text: 'Sedentary (little or no exercise)', value: '1.2' }, 

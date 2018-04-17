@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Form, Button } from 'semantic-ui-react';
+import { Form, Button, Container } from 'semantic-ui-react';
 import axios from 'axios';
+import NavBar from './navBar.jsx';
 
 
 class Survey extends React.Component {
@@ -54,16 +55,16 @@ class Survey extends React.Component {
     render() {
         const options = [
             { key: 'None', text: 'None', value: 'none' },
-            { key: 'Tree nut', text: 'Tree nut allergy', value: 'Tree nut' },
-            { key: 'Wheat', text: 'Wheat allergy', value: 'Wheat' },
-            { key: 'Milk', text: 'Milk allergy', value: 'Milk' },
-            { key: 'Peanut', text: 'Peanut allergy', value: 'Peanut' },
-            { key: 'Egg', text: 'Egg allergy', value: 'Egg' },
-            { key: 'Soy', text: 'Soy allergy', value: 'Soy' },
-            { key: 'Alpha-gal', text: 'Alpha-gal allergy', value: 'Alpha-gal' },
-            { key: 'Corn', text: 'Corn allergy', value: 'Corn' },
-            { key: 'Fruit', text: 'Fruit allergy', value: 'Fruit' },
-            { key: 'Garlic', text: 'Garlic allergy', value: 'Garlic' },
+            { key: 'Tree nut', text: 'Tree nut', value: 'Tree nut' },
+            { key: 'Wheat', text: 'Wheat', value: 'Wheat' },
+            { key: 'Milk', text: 'Milk', value: 'Milk' },
+            { key: 'Peanut', text: 'Peanut', value: 'Peanut' },
+            { key: 'Egg', text: 'Egg', value: 'Egg' },
+            { key: 'Soy', text: 'Soy', value: 'Soy' },
+            { key: 'Alpha-gal', text: 'Alpha-gal', value: 'Alpha-gal' },
+            { key: 'Corn', text: 'Corn', value: 'Corn' },
+            { key: 'Fruit', text: 'Fruit', value: 'Fruit' },
+            { key: 'Garlic', text: 'Garlic', value: 'Garlic' },
           ]
           const activityLevelOpts = [
             { text: 'Sedentary (little or no exercise)', value: '1.2' }, 
@@ -73,9 +74,11 @@ class Survey extends React.Component {
             { text: 'Extra active (very hard exercise/sports & physical job or 2x training)', value: '1.9' }
         ]
         return (
+            <Container fluid>
             <Form>
+                <NavBar></NavBar>
                 <Form.Group widths='equal'>
-                    <Form.Input id='gender' fluid label='Gender' placeholder='Read only' onChange={this.changeInput}/>
+                    <Form.Input id='gender' fluid label='Gender' placeholder='Read only' onChange={this.changeInput} width={6}/>
                 </Form.Group>
                 <Form.Group widths='equal'>
                     <Form.Input id='height' fluid label='Height' placeholder='Read only' onChange={this.changeInput}/>
@@ -90,13 +93,22 @@ class Survey extends React.Component {
                     <Form.Dropdown id='activityLevel' placeholder='Select Activity Level' fluid selection options={activityLevelOpts} onChange={this.changeInput} />
                 </Form.Group> */}
                 <Form.Group widths='equal'>
-                    <Form.Dropdown id='allergies' placeholder='None' fluid multiple selection options={options} onChange={this.changeInput}/>
+<<<<<<< HEAD
+<<<<<<< HEAD
+                    <Form.Dropdown id='allergies' fluid label='allergies' placeholder='None' fluid multiple selection options={options} onChange={this.changeInput}/>
+=======
+                    <Form.Dropdown id='allergies' fluid label="Allergy" placeholder='None' fluid multiple selection options={options} onChange={this.changeInput}/>
+>>>>>>> 2d1ac383cfeaec19740d7754ec6f538fec69cdc9
+=======
+                    <Form.Dropdown id='allergies' fluid label="Allergy" placeholder='None' fluid multiple selection options={options} onChange={this.changeInput}/>
+>>>>>>> 2d1ac383cfeaec19740d7754ec6f538fec69cdc9
                     {/* <Form.Input id='allergies' fluid label='allergies' placeholder='Read only' onChange={this.changeInput}/> */}
                 </Form.Group>
                 <Button basic color='green' onClick={this.submit} >Submit</Button>
             </Form>
+            </Container>
         )
     }
 }
 
-ReactDOM.render(<Survey />, document.getElementById('survey'));
+ReactDOM.render(<Survey />, document.getElementById('dashboard'));

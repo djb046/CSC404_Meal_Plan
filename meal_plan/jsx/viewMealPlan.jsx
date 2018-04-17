@@ -2,16 +2,46 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Container, Card, Icon, Image, Grid, Segment, Button } from 'semantic-ui-react'
 import NavBar from './navBar.jsx';
+import axios from 'axios';
+
+var calories;
+var mealcalories;
+
+axios({
+  method: 'post',
+  url: '/generateMealPlan/generate',
+}).then(function (response) {
+  console.log(response);
+  calories = response.data.calories;
+  mealcalories = response.data.breakfast.name;
+  console.log(response.data.breakfast.name);
+  console.log(response.data.lunch.name);
+  console.log(response.data.dinner.name);
+  return response;
+}).catch(function (error) {
+  console.log(error);
+});
+
+// not sure exactly how to use axios properly to display
+// but a response is recieved with required data...
+
 
 
 const View = () => (
-    <Container fluid>
+
+  <Container fluid>
     <NavBar></NavBar>
     <Grid divided='vertically' centered>
       <Grid.Row columns={3} >
         <Grid.Column>
           <Container className="dashPanel" >
             lkjba
+            <div>
+              <span className="calories"></span>
+            </div>
+
+            {mealcalories}
+
           </Container>
 
         </Grid.Column>
@@ -32,5 +62,6 @@ const View = () => (
   </Container>
 
 )
+
 
 ReactDOM.render(<View />, document.getElementById('dashboard'));

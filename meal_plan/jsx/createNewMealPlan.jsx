@@ -35,38 +35,38 @@ class Create extends React.Component {
     submit() {
 
 
-        axios({
-            method: 'post',
-            headers: {
-                "x-app-id": 'b5e0352f',
-                "x-app-key": '9d811ca9f553eb1a1a121d026d19b094',
-                "Content-Type": "application/json"
-            },
-            url: 'https://trackapi.nutritionix.com/v2/natural/nutrients',
-            data: {
-                "query":"for breakfast i ate 2 eggs, bacon, and french toast",
-                "timezone": "US/Eastern"
-               }
-        }).then(function (response) {
-            
-            console.log(response);
-        }).catch(function (error) {
-                console.log(error);
-            });
-
         // axios({
         //     method: 'post',
-        //     url: '/generateMealPlan/submit',
+        //     headers: {
+        //         "x-app-id": 'b5e0352f',
+        //         "x-app-key": '9d811ca9f553eb1a1a121d026d19b094',
+        //         "Content-Type": "application/json"
+        //     },
+        //     url: 'https://trackapi.nutritionix.com/v2/natural/nutrients',
         //     data: {
-        //         goal: this.state.goal,
-        //         activityLevel: this.state.actLevel
-        //     }
+        //         "query":"for breakfast i ate 2 eggs, bacon, and french toast",
+        //         "timezone": "US/Eastern"
+        //        }
         // }).then(function (response) {
-        //     location.href = '/viewMealPlan';
-        //     console.log(location);
+            
+        //     console.log(response);
         // }).catch(function (error) {
         //         console.log(error);
         //     });
+
+        axios({
+            method: 'post',
+            url: '/generateMealPlan/submit',
+            data: {
+                goal: this.state.goal,
+                activityLevel: this.state.actLevel
+            }
+        }).then(function (response) {
+            location.href = '/viewMealPlan';
+            console.log(location);
+        }).catch(function (error) {
+                console.log(error);
+            });
     }
 
     render() {

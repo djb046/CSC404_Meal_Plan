@@ -93,15 +93,7 @@ class Survey extends React.Component {
                     <Form.Dropdown id='activityLevel' placeholder='Select Activity Level' fluid selection options={activityLevelOpts} onChange={this.changeInput} />
                 </Form.Group> */}
                 <Form.Group widths='equal'>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    <Form.Dropdown id='allergies' fluid label='allergies' placeholder='None' fluid multiple selection options={options} onChange={this.changeInput}/>
-=======
                     <Form.Dropdown id='allergies' fluid label="Allergy" placeholder='None' fluid multiple selection options={options} onChange={this.changeInput}/>
->>>>>>> 2d1ac383cfeaec19740d7754ec6f538fec69cdc9
-=======
-                    <Form.Dropdown id='allergies' fluid label="Allergy" placeholder='None' fluid multiple selection options={options} onChange={this.changeInput}/>
->>>>>>> 2d1ac383cfeaec19740d7754ec6f538fec69cdc9
                     {/* <Form.Input id='allergies' fluid label='allergies' placeholder='Read only' onChange={this.changeInput}/> */}
                 </Form.Group>
                 <Button basic color='green' onClick={this.submit} >Submit</Button>

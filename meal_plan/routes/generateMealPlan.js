@@ -11,13 +11,12 @@ BEE = 0;
 dietType = '';
 calorieIntake = 0;
 
-router.post('/submit',function (req, res) {
+router.post('/submit', function (req, res) {
   db.getConnection(function (err, mclient) {
     console.log(req.body);
-    mclient.query('Update userData SET dietType = "'+req.body.goal+'", activityLevel="'+req.body.activityLevel+'" WHERE UserID="' + req.user.id + '"', function (err, rows, fields) {
-      // mclient.release();
+    mclient.query('Update userData SET dietType = "' + req.body.goal + '", activityLevel="' + req.body.activityLevel + '" WHERE UserID="' + req.user.id + '"', function (err, rows, fields) {
       if (err) throw err;
-      console.log("Changed diet type of " + req.user.id + " to "+req.body.goal+" ");
+      console.log("Changed diet type of " + req.user.id + " to " + req.body.goal + " ");
       res.redirect('/viewMealPlan');
     });
     mclient.query('Select * FROM userData WHERE UserID="' + req.user.id + '"', function (err, rows, fields) {
@@ -25,18 +24,15 @@ router.post('/submit',function (req, res) {
       if (err) throw err;
       weight = rows[0].weight;
       height = rows[0].height;
-      // height = 50
       age = rows[0].age;
       gender = rows[0].gender;
       activityLevel = rows[0].activityLevel;
       dietType = rows[0].dietType;
-      // console.log("Changed diet type of " + req.user.id + " to "+req.body.goal+" ");
-    console.log(calculateBEE());
-    console.log(calculateBMR());
-    console.log(generateMealPlan());
+      console.log(calculateBEE());
+      console.log(calculateBMR());
+      console.log(generateMealPlan());
+    });
   });
-  });
-  // req.body == { goal: 'Weight Loss', activityLevel: 'Lightly active' }
 });
 
 
@@ -48,14 +44,13 @@ router.post('/submit',function (req, res) {
 //Generally this is how much a person will burn without any exercise
 
 //if statments need to be replaced with proper ones, and the 1's within equation should be replaced.
-function calculateBEE()
-{
+function calculateBEE() {
   BEE = 0;
   if (gender == 'Female') { //case sensitive
     return BEE = (655 + (4.35 * weight) + (4.7 * height) - (4.7 * age));
 
   }
-  else if (gender  == 'Male') {//case sensitive
+  else if (gender == 'Male') {//case sensitive
     return BEE = (66 + (6.23 * weight) + (12.7 * height) - (6.8 * age));
     //This is why we can not account for 'other'
   }
@@ -69,8 +64,7 @@ var BMR = 0
 
 //if statments need to be replaced with proper ones, and the 1's within equation should be replaced.
 
-function calculateBMR()
-{ 
+function calculateBMR() {
 
   // Sedentary (little or no exercise): BMR x 1.2
   //  Lightly active (light exercise/sports 1-3 days/week): BMR x 1.375
@@ -87,9 +81,7 @@ function calculateBMR()
 
 neededCalories = 0;
 // after we have calculated the BMR we can move on to actual generation of meal plan, this will be based on diet
-function generateMealPlan()
-{
-  console.log(dietType);
+function generateMealPlan() {
   // here we will let them decide, based on their diet type, we can take a quick survey of the current diet type
   // when they click generate a meal plan because this can change very regularly
 
@@ -102,8 +94,7 @@ function generateMealPlan()
     // are they trying to gain, normal (healthy) amount are 0.5lb (+250 calories) and 1lb (+500 calories) a week
     neededCalories = 500 /* 250 ?*/; //again we will check and change this value depending on amount loss
     calorieIntake = calculateBMR() + neededCalories;
-  } else if (dietType == 'loss')
-  {
+  } else if (dietType == 'loss') {
     // to lose weight we must subtract around 500 calories(this is a changing factor) to the intake amount
     // for this we will need to ask them again in the quick survey if this diet is selected how main pounds
     // are they trying to lose, normal (healthy) amount are 0.5lb (-250 calories) and 1lb (-500 calories) a week
@@ -120,18 +111,33 @@ function generateMealPlan()
 
   // also we need to check for allergies and account for this in some way, but that can be handled later
   // once we nail down the functionality of this.
-return calorieIntake;
+  return calorieIntake;
 }
 
-router.post('/generate', function(req, res)
-{
+router.post('/generate', function (req, res) {
   db.getConnection(function (err, mclient) {
-    mclient.query('SELECT * mealplan_breakfast', function (err, rows, fields) {
-      mclient.release();
+    random = Math.floor(Math.random() * 3); //selects between current 3 meals
+    mclient.query('SELECT * FROM mealplan_breakfast', function (err, brk, fields) {
       if (err) throw err;
-      console.log(rows[0]);
+      console.log(brk[random]);
+      mclient.query('SELECT * FROM mealplan_lunch', function (err, lun, fields) {
+        if (err) throw err;
+        console.log(lun[random]);
+        mclient.query('SELECT * FROM mealplan_dinner;', function (err, din, fields) {
+          mclient.release();
+         if (err) throw err;
+         console.log(din[random]);
+         res.send({calories: generateMealPlan(),
+          breakfast: brk[random],
+          lunch: lun[random],
+          dinner: din[random]});
+     });
     });
-  });
+    });
+
+
+
+});
 });
 
 module.exports = router

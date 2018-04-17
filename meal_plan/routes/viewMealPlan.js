@@ -5,7 +5,6 @@ var gmp = require('./generateMealPlan.js');
 
 router.get('/', function (req, res, next) {
     res.render('view-meal-plan', {});
-    console.log(gmp);
 });
 
 

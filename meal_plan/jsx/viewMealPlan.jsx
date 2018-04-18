@@ -1,60 +1,118 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Container, Card, Icon, Image, Grid, Segment, Button } from 'semantic-ui-react'
+import { Divider, Container, Card, Icon, Image, Grid, Segment, Button } from 'semantic-ui-react'
 import NavBar from './navBar.jsx';
 import axios from 'axios';
 
-var calories;
-var mealcalories;
+class View extends React.Component 
+{
 
-axios({
-  method: 'post',
-  url: '/generateMealPlan/generate',
-}).then(function (response) {
-  console.log(response);
-  calories = response.data.calories;
-  mealcalories = response.data.breakfast.name;
-  console.log(response.data.breakfast.name);
-  console.log(response.data.lunch.name);
-  console.log(response.data.dinner.name);
-  return response;
-}).catch(function (error) {
-  console.log(error);
+  constructor(props)
+  {
+    super(props);
+    this.state = {
+      breakfast: "",
+      lunch: "",
+      dinner: ""
+    }
+  }
+
+  componentDidMount() {
+    var _this = this;
+axios.post('/generateMealPlan/generate')
+.then(function(response)
+{
+ console.log(response);
+ _this.setState({
+  breakfast: response.data.breakfast,
+  lunch: response.data.lunch,
+  dinner: response.data.dinner
 });
-
+//  callback(response);
+//  console.log("BMR: "+ calories);
+    console.log("Breakfast: " + response.data.breakfast.name);
+   console.log("Lunch: " + response.data.lunch.name);
+   console.log("Dinner: " + response.data.dinner.name);
+  //  $('#test1').response.data.breakfast.name;
+// return calories;
+});
+  }
 // not sure exactly how to use axios properly to display
 // but a response is recieved with required data...
 
+// function callback(call)
+// {
+//   var cal = call;
+//   console.log(cal.data);
+//   var calories = cal.data.calories;
+//   return cal.data.calories;
+// }
 
-
-const View = () => (
-
+render () {
+  const breakfast = this.state.breakfast;
+  const lunch = this.state.lunch;
+  const dinner = this.state.dinner;
+return (
+  
   <Container fluid>
     <NavBar></NavBar>
     <Grid divided='vertically' centered>
       <Grid.Row columns={3} >
         <Grid.Column>
           <Container className="dashPanel" >
-            lkjba
-            <div>
-              <span className="calories"></span>
-            </div>
-
-            {mealcalories}
-
+          {/* I have 3 different divider styles */}
+        
+            <Segment>
+             Meal: {breakfast.name}
+             <Divider hidden />
+            Protein: {breakfast.Protein} grams
+            <Divider hidden />
+             Fat: {breakfast.Fat} grams
+             <Divider hidden />
+             Carbs: {breakfast.Carbs} grams
+             <Divider hidden />
+            Calories: {breakfast.Calories}
+             <Divider hidden />
+             Ingredients: {breakfast.Ingredients}
+             </Segment>
           </Container>
 
         </Grid.Column>
 
         <Grid.Column>
           <Container className="dashPanel" >
+          <Segment>
+             Meal: {lunch.name}
+             <Divider fitted />
+            Protein: {lunch.Protein} grams
+            <Divider fitted />
+             Fat: {lunch.Fat} grams
+             <Divider fitted />
+             Carbs: {lunch.Carbs} grams
+             <Divider fitted />
+            Calories: {lunch.Calories}
+             <Divider fitted />
+             Ingredients: {lunch.Ingredients}
+             </Segment>
           </Container>
         </Grid.Column>
 
         <Grid.Column>
           <Container className="dashPanel" >
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa strong. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede link mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.</p>
-          </Container>
+          <Segment>
+             Meal: {dinner.name}
+             <Divider section />
+            Protein: {dinner.Protein} grams
+            <Divider section />
+             Fat: {dinner.Fat} grams
+             <Divider section />
+             Carbs: {dinner.Carbs} grams
+             <Divider section />
+            Calories: {dinner.Calories}
+             <Divider section />
+             Ingredients: {dinner.Ingredients}
+             </Segment>
+            </Container>
         </Grid.Column>
 
       </Grid.Row>
@@ -62,6 +120,6 @@ const View = () => (
   </Container>
 
 )
-
-
+}
+}
 ReactDOM.render(<View />, document.getElementById('dashboard'));

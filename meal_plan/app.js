@@ -135,6 +135,11 @@ app.get('/create-meal-plan', function(req, res){
  });
   
 });
+// branch
+// this is how we can sercure our routes in the future
+// app.get('/account', ensureAuthenticated, function (req, res) {
+//   res.render('account', { user: req.user });
+// });
 
 app.get('/test', function(req, res){
   res.render('test', {});

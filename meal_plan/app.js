@@ -87,7 +87,7 @@ app.use('/dashboard', dashboard);
 app.get('/', function (req, res) {
   res.render('index', { user: req.user });
 });
-
+// branch
 // this is how we can sercure our routes in the future
 // app.get('/account', ensureAuthenticated, function (req, res) {
 //   res.render('account', { user: req.user });

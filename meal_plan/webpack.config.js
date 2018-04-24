@@ -1,5 +1,6 @@
 const path = require('path');
 var SRC = path.resolve(__dirname, 'jsx');
+// branch
 module.exports = {
   entry: {
     dashboard: './jsx/dashboard.jsx',

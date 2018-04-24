@@ -76,7 +76,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.use(express.static(path.join(__dirname, 'jsx')));
 app.use(express.static(path.join(__dirname, 'jsx/images')));
 // app.use(express.static(path.join(__dirname, 'jsx')));
-
+// branch
 app.use('/generateMealPlan', generateMealPlan);
 app.use('/survey', survey);
 app.use('/createMealPlan', createMealPlan);

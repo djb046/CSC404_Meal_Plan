@@ -22,7 +22,7 @@ var createMealPlan = require('./routes/createMealPlan');
 var viewMealPlan = require('./routes/viewMealPlan');
 var editUserInfo = require('./routes/editUserInfo');
 var dashboard = require('./routes/dashboard');
-// branch
+
 var AMAZON_CLIENT_ID = "amzn1.application-oa2-client.c84a394dab3c4fea9d228b3881caf672"
 var AMAZON_CLIENT_SECRET = "7f09ba172422925cc657d73fb59bcd1384a22a6f74190bd8cefec554a7fea5f4";
 

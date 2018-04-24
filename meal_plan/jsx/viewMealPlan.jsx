@@ -64,7 +64,7 @@ return (
         
             <Segment>
              Meal: {breakfast.name}
-             <Divider hidden />
+             <Divider section />
             Protein: {breakfast.Protein} grams
             <Divider hidden />
              Fat: {breakfast.Fat} grams
@@ -83,15 +83,15 @@ return (
           <Container className="dashPanel" >
           <Segment>
              Meal: {lunch.name}
-             <Divider fitted />
+             <Divider section />
             Protein: {lunch.Protein} grams
-            <Divider fitted />
+            <Divider hidden />
              Fat: {lunch.Fat} grams
-             <Divider fitted />
+             <Divider hidden />
              Carbs: {lunch.Carbs} grams
-             <Divider fitted />
+             <Divider hidden />
             Calories: {lunch.Calories}
-             <Divider fitted />
+             <Divider hidden />
              Ingredients: {lunch.Ingredients}
              </Segment>
           </Container>
@@ -103,13 +103,13 @@ return (
              Meal: {dinner.name}
              <Divider section />
             Protein: {dinner.Protein} grams
-            <Divider section />
+            <Divider hidden />
              Fat: {dinner.Fat} grams
-             <Divider section />
+             <Divider hidden />
              Carbs: {dinner.Carbs} grams
-             <Divider section />
+             <Divider hidden />
             Calories: {dinner.Calories}
-             <Divider section />
+             <Divider hidden />
              Ingredients: {dinner.Ingredients}
              </Segment>
             </Container>

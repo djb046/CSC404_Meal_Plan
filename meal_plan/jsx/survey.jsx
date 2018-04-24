@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Form, Button, Container } from 'semantic-ui-react';
+import { Form, Button, Container, Dropdown } from 'semantic-ui-react';
 import axios from 'axios';
 import NavBar from './navBar.jsx';
 
@@ -73,12 +73,19 @@ class Survey extends React.Component {
             { text: 'Very active (hard exercise/sports 6-7 days a week)', value: '1.725' }, 
             { text: 'Extra active (very hard exercise/sports & physical job or 2x training)', value: '1.9' }
         ]
+        const genderoptions = [
+            { text: 'Male', value: 'Male'},
+            { text: 'Female', value: 'Female'}
+        ]
         return (
             <Container fluid>
             <Form>
                 <NavBar></NavBar>
-                <Form.Group widths='equal'>
+                {/* <Form.Group widths='equal'>
                     <Form.Input id='gender' fluid label='Gender' placeholder='Read only' onChange={this.changeInput} width={6}/>
+                </Form.Group> */}
+                <Form.Group widths='equal'>
+                    <Dropdown id='gender' placeholder='Select Goal' fluid selection options={genderoptions} onChange={this.changeInput} />
                 </Form.Group>
                 <Form.Group widths='equal'>
                     <Form.Input id='height' fluid label='Height' placeholder='Read only' onChange={this.changeInput}/>
@@ -89,11 +96,11 @@ class Survey extends React.Component {
                 <Form.Group widths='equal'>
                     <Form.Input id='age' fluid label='Age' placeholder='Read only' onChange={this.changeInput}/>
                 </Form.Group>
-                {/* <Form.Group widths='equal'>
-                    <Form.Dropdown id='activityLevel' placeholder='Select Activity Level' fluid selection options={activityLevelOpts} onChange={this.changeInput} />
-                </Form.Group> */}
                 <Form.Group widths='equal'>
-                    <Form.Dropdown id='allergies' fluid label="Allergy" placeholder='None' fluid multiple selection options={options} onChange={this.changeInput}/>
+                    <Form.Dropdown id='activityLevel' fluid label='Activity Level' placeholder='Select Activity Level' fluid selection options={activityLevelOpts} onChange={this.changeInput} />
+                </Form.Group>
+                <Form.Group widths='equal'>
+                    <Dropdown id='allergies' fluid label="Allergy" placeholder='None' fluid multiple selection options={options} onChange={this.changeInput}/>
                     {/* <Form.Input id='allergies' fluid label='allergies' placeholder='Read only' onChange={this.changeInput}/> */}
                 </Form.Group>
                 <Button basic color='green' onClick={this.submit} >Submit</Button>

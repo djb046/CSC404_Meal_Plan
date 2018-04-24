@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Form, Button, Container, Dropdown } from 'semantic-ui-react';
 import axios from 'axios';
 import NavBar from './navBar.jsx';
-//branch
+
 
 class Survey extends React.Component {
     constructor(props) {

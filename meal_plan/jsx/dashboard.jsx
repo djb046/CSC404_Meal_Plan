@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { Container, Grid, Card, Icon, Image, Menu, Progress } from 'semantic-ui-react';
 import Profile from './profile.jsx';
 import NavBar from './navBar.jsx';
-//branch
+
 
 class Dashboard extends React.Component {
   constructor(props, context) {

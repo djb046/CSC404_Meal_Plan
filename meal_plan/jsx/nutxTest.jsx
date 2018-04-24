@@ -4,7 +4,7 @@ import { Form, Button, Dropdown, Container, Segment } from 'semantic-ui-react';
 import axios from 'axios';
 import NavBar from './navBar.jsx';
 
-//branch
+
 class NutritionTest extends React.Component {
     constructor(props) {
         super(props);

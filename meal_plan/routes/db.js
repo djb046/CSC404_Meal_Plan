@@ -15,15 +15,7 @@ var mysql = require('mysql');
 
 //   });
   
-<<<<<<< HEAD
-<<<<<<< HEAD
-var app = express();
-=======
-// branch
->>>>>>> djBranchier
-=======
 
->>>>>>> djBranchier
 
 var pool = mysql.createPool(
 {

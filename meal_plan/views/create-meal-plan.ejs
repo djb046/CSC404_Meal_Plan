@@ -1,139 +1,15 @@
- <!-- Create Meal Plan test, can remove when route to /create-meal-plan is working -->
-<html>
-	<head>
+<head>
 	<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
-		<title>
-			Create Meal Plan
-		</title>
-		<script>
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css"></link>
+</head>
 
-			function addFood(meal) {
-				// <!-- temporary cheese method for demo -->
-				if(meal == 'new'){
-					document.getElementById('breakfast').style.display='';
-					document.getElementById('lunch').style.display='';
-					document.getElementById('dinner').style.display='';
-				}
+	
+	<div id='dashboard'></div>
+	<script src='./build/create.bundle.js'></script>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-				if (meal == 'breakfast')
-				{
-					console.log('Add some functions here?');
-				}
 
-				document.getElementById(meal).style.display='';
-=======
-<!-- branch -->
->>>>>>> djBranchier
 
-				
-			}
-		</script>
-	</head>
-	<body>
-		<center>
-			<h1> Create New Meal Plan </h1>
-			<!-- Would be used to generate a new meal card for each meal -->
-			<button class="button" onClick = "addFood('new')"><span>Create Plan</span></button>
-		</center>
 
-		<h2 style="text-indent: 10%;"> Breakfast </h2>
-		<div class="meal_card" id=breakfast>
-		  <img src="images/bacon.jpg" alt="food" style="width:20%; ">
-		  <span class="removebtn" onClick="this.parentElement.style.display='none'">&times;</span>
-		  <div class="container" style="vertical-align: sub;">
-		  	<a style="font-size:25px"><%= results.mealName %></a>
-		  	<a><ul>
-		  		<li>Protein: <%= results.protein %> grams</li>
-		  		<li>Fat: <%= results.fat %> grams</li>
-		  		<li>Carbs: <%= results.carbs %> grams</li>
-		  		<li>Calories: <%= results.calories %> grams</li>
-		  		</ul></a>
-		  	</div>
-		  	<div class="container" style="vertical-align: sub;">
-		  	<a style="font-size:20px">Ingredients</a>
-		  	<a><ul>
-		  		<li><%= results.ingredients %></li>
-		  		<li>bacon</li>
-		  		<li>bacon</li>
-		  		<li>bacon</li>
-		  		</ul></a>
-		  	</div>
-		  </div>
 
-		  <!-- Will be used to manually add a food, if it meets the requirements of the diet -->
-		  <button id=add_food_breakfast class="button" style="margin-left:15%;font-size: 25px;padding: 10px;" onClick="addFood('breakfast')">
-		  <span>Add item</span></button>
-
-		 <h2 style="text-indent: 10%;"> Lunch </h2>
-		<div class="meal_card" id='lunch'>
-		  <img src="images/bacon.jpg" alt="food" style="width:20%; ">
-		  <span class="removebtn" onClick="this.parentElement.style.display='none'">&times;</span>
-		  <div class="container" style="vertical-align: sub;">
-		  	<a style="font-size:25px"><%= results2.mealName %></a>
-		  	<a><ul>
-		  		<li>Protein:</li>
-		  		<li>Fat:</li>
-		  		<li>Carbs:</li>
-		  		<li>Calories:</li>
-		  		</ul></a>
-		  	</div>
-		  <div class="container" style="vertical-align: sub;">
-		  	<a style="font-size:20px">Ingredients</a>
-		  	<a><ul>
-		  		<li>bac</li>
-		  		<li>bacon</li>
-		  		<li>bacon</li>
-		  		<li>bacon</li>
-		  		</ul></a>
-		  	</div>
-		  </div>
-=======
-
->>>>>>> djBranchier
-
-		  <!-- Will be used to manually add a food, if it meets the requirements of the diet -->
-		  <button id=add_food class="button" style="margin-left:15%;font-size: 25px;padding: 10px;" onClick="addFood('lunch')">
-		  	<span>Add item</span>
-		  </button>
-
-		  <h2 style="text-indent: 10%;"> Dinner </h2>
-		<div class="meal_card" id=dinner>
-		  <img src="images/bacon.jpg" alt="food" style="width:20%; ">
-		  <span class="removebtn" onClick="this.parentElement.style.display='none'">&times;</span>
-		  <div class="container" style="vertical-align: sub;">
-		  	<a style="font-size:25px">Food_Name</a>
-		  	<a><ul>
-		  		<li>Protein:</li>
-		  		<li>Fat:</li>
-		  		<li>Carbs:</li>
-		  		<li>Calories:</li>
-		  		</ul></a>
-		  	</div>
-		  <div class="container" style="vertical-align: sub;">
-		  	<a style="font-size:20px">Ingredients</a>
-		  	<a><ul>
-		  		<li>bacon</li>
-		  		<li>bacon</li>
-		  		<li>bacon</li>
-		  		<li>bacon</li>
-		  		</ul></a>
-		  	</div>
-		  </div>
-		  <!-- Will be used to manually add a food, if it meets the requirements of the diet -->
-		  <button id = add_food class="button" style="margin-left:15%;font-size: 25px;padding: 10px;" onClick="addFood('dinner')">
-		  <span>Add item</span>
-		  </button>
-		</div>
-
-		<br/><br/><br/>
-		<center>
-		<!-- Will be used to save the meal -->
-		<button id = save_meal class="button" style='width:50%' onClick="location.href='/';">
-		  <span>Save Meal Plan</span>
-		  </button>
-		 </center>
-	</body>
-</html>
 

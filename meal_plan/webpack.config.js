@@ -1,20 +1,17 @@
 const path = require('path');
-<<<<<<< HEAD
-
-=======
 var SRC = path.resolve(__dirname, 'jsx');
-<<<<<<< HEAD
-// branch
->>>>>>> djBranchier
-=======
->>>>>>> djBranchier
 module.exports = {
   entry: {
-    app: './jsx/yaya.jsx'
+    dashboard: './jsx/dashboard.jsx',
+    login: './jsx/login.jsx',
+    survey: './jsx/survey.jsx',
+    create: './jsx/createNewMealPlan.jsx',
+    nutritionxTest: './jsx/nutxTest.jsx',
+    view: './jsx/viewMealPlan.jsx'
   },
   output: {
     path: path.resolve(__dirname, 'views/build'),
-    filename: 'app.bundle.js'
+    filename: '[name].bundle.js'
   },
   module: {
     rules: [
@@ -24,7 +21,12 @@ module.exports = {
         use: {
           loader: "babel-loader"
         }
+      }, {
+        test: /\.(jpe?g|png|gif|mp3)$/,
+        include: SRC,
+        loaders: ['file-loader']
       }
+
     ]
   }
 }

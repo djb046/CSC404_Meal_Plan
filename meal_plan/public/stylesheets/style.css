@@ -82,3 +82,46 @@ a{
   right: 0;
 }
 
+#dashboard {
+  background: #324144;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+
+.dashPanel {
+  height: 80%;
+  width: 100%;
+  border-radius: 4%;
+  border-color: black;
+  border-style: solid;
+  border-width: 2px;
+  margin-top: 10%;
+}
+
+
+.profilePic {
+  border-radius: 4%;
+  border-color: black;
+  border-style: solid;
+  border-width: 2px;
+  margin-top: 10%;
+}
+
+.center {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+
+.dashButton1 {
+  width: 160px;
+  margin: 10px !important;
+}
+
+.dashButton2 {
+  margin: 10px !important;
+}

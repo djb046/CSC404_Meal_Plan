@@ -1,5 +1,10 @@
 const path = require('path');
+<<<<<<< HEAD
 
+=======
+var SRC = path.resolve(__dirname, 'jsx');
+// branch
+>>>>>>> djBranchier
 module.exports = {
   entry: {
     app: './jsx/yaya.jsx'

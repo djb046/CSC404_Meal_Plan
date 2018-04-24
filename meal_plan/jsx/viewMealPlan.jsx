@@ -47,7 +47,7 @@ axios.post('/generateMealPlan/generate')
 //   var calories = cal.data.calories;
 //   return cal.data.calories;
 // }
-//branch
+
 render () {
   const breakfast = this.state.breakfast;
   const lunch = this.state.lunch;

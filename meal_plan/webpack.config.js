@@ -3,7 +3,10 @@ const path = require('path');
 
 =======
 var SRC = path.resolve(__dirname, 'jsx');
+<<<<<<< HEAD
 // branch
+>>>>>>> djBranchier
+=======
 >>>>>>> djBranchier
 module.exports = {
   entry: {

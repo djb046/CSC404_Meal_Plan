@@ -84,9 +84,21 @@ app.use(express.static(path.join(__dirname, 'jsx')));
 <<<<<<< HEAD
 =======
 // app.use(express.static(path.join(__dirname, 'jsx')));
+<<<<<<< HEAD
 // branch
 
 app.get('/', function(req, res){
+=======
+
+app.use('/generateMealPlan', generateMealPlan);
+app.use('/survey', survey);
+app.use('/createMealPlan', createMealPlan);
+app.use('/viewMealPlan', viewMealPlan);
+app.use('/editUserInfo', editUserInfo);
+app.use('/dashboard', dashboard);
+
+app.get('/', function (req, res) {
+>>>>>>> djBranchier
   res.render('index', { user: req.user });
 });
 

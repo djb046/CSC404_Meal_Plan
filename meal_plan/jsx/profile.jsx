@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 import { Container, Card, Icon, Image, Grid, Segment, Button } from 'semantic-ui-react'
-//branch
+
 
 const Profile = () => (
     <Grid columns='equal' style={{ margin: '1%' }}>

@@ -15,7 +15,7 @@
  * @description         To be able to create a FDA-style nutrition label with any nutrition data source                                             |
  *                                                                                                                                                  |
  ***************************************************************************************************************************************************+
-*/ //branch
+*/
 ;(function($){
 	$.fn.nutritionLabel = function(option, settings){
 		if (typeof option === 'object'){

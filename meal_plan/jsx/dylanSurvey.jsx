@@ -4,7 +4,7 @@
 
 //This is the Entrance survey that will request information specific to our app from the user after
 //the initial creation of their account via Amazon Passport or such. 
-//branch
+
 export default class Survey extends React.Component {
 	//default state with empty values
 	state = {

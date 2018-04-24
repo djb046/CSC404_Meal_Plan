@@ -81,10 +81,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'views')));
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(express.static(path.join(__dirname, 'jsx')));
-<<<<<<< HEAD
-=======
-// app.use(express.static(path.join(__dirname, 'jsx')));
-<<<<<<< HEAD
 // branch
 
 app.get('/', function(req, res){
@@ -98,9 +94,9 @@ app.use('/editUserInfo', editUserInfo);
 app.use('/dashboard', dashboard);
 
 app.get('/', function (req, res) {
->>>>>>> djBranchier
   res.render('index', { user: req.user });
 });
+
 
  app.get('/survey', function(req, res)
  {
@@ -135,11 +131,13 @@ app.get('/create-meal-plan', function(req, res){
  });
   
 });
+=======
 // branch
 // this is how we can sercure our routes in the future
 // app.get('/account', ensureAuthenticated, function (req, res) {
 //   res.render('account', { user: req.user });
 // });
+>>>>>>> djBranchier
 
 app.get('/test', function(req, res){
   res.render('test', {});

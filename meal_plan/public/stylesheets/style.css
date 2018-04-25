@@ -1,11 +1,11 @@
 body {
-  background-color:	#fef4e2;
+  background-color: #fef4e2;
   background-image: url("images/bacon.jpg") repeat 0 0;
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 .meal_card {
-	margin: auto;
+  margin: auto;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     width: 70%;
@@ -23,12 +23,12 @@ img {
 }
 
 .container {
-	display:inline-block;
+  display:inline-block;
     padding: 2px 40px;
 }
 
 a{
-	display: block;
+  display: block;
 }
 
 .removebtn {
@@ -83,7 +83,7 @@ a{
 }
 
 #dashboard {
-  background: #324144;
+  background: #fef4e2;
   position: fixed;
   width: 100%;
   height: 100%;
@@ -93,13 +93,15 @@ a{
 }
 
 .dashPanel {
+  background: white;
   height: 80%;
   width: 100%;
   border-radius: 4%;
-  border-color: black;
-  border-style: solid;
-  border-width: 2px;
+  border-color: #21BA45;
+  border-style: outset;
+  border-width: 5px;
   margin-top: 10%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
 }
 
 

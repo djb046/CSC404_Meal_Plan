@@ -90,8 +90,9 @@ class Survey extends React.Component {
         ]
         return (
             <Container fluid>
+            <NavBar></NavBar>
+            <Container className="dashPanel">
             <Form>
-                <NavBar></NavBar>
                 {/* <Form.Group widths='equal'>
                     <Form.Input id='gender' fluid label='Gender' placeholder='Read only' onChange={this.changeInput} width={6}/>
                 </Form.Group> */}
@@ -116,6 +117,7 @@ class Survey extends React.Component {
                 </Form.Group>
                 <Button basic color='green' onClick={this.submit} >Submit</Button>
             </Form>
+            </Container>
             </Container>
         )
     }

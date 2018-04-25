@@ -19,7 +19,7 @@ class View extends React.Component
 
   componentDidMount() {
     var _this = this;
-axios.post('/generateMealPlan/generate')
+axios.post('/viewMealPlan/view')
 .then(function(response)
 {
  console.log(response);

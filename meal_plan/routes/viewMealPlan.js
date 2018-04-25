@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var db = require('./db.js');
-var gmp = require('./generateMealPlan.js');
 
 router.get('/', function (req, res, next) {
     res.render('view-meal-plan', {});
@@ -13,6 +12,15 @@ router.post('/view', function (req, res) {
       mclient.query('SELECT * FROM meals WHERE UserID = "'+req.user.id+'"', function (err, rows, fields) {
         if (err) throw err;
         console.log(rows[0]);
+        if (rows[0] == undefined)
+        {
+          mclient.query('INSERT INTO mealplan.meals (UserID, meal1, meal2, meal3, currentbee, currentbmr) VALUES ("' + req.user.id + '", 0, 0, 0, 0, 0)', function (err, rows, fields) {
+            // mclient.release();
+           if (err) throw err;
+           console.log("Created meal space for: " + req.user.id);
+           res.redirect('/dashboard');
+          });
+        }
         meal1 = rows[0].meal1;
         meal2 = rows[0].meal2;
         meal3 = rows[0].meal3;

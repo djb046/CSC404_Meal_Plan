@@ -116,7 +116,7 @@ function generateMealPlan() {
 
 router.post('/generate', function (req, res) {
   db.getConnection(function (err, mclient) {
-    random = Math.floor(Math.random() * 3); //selects between current 3 meals
+    random = Math.floor(Math.random() * (3 - 1 + 1)) + 1; //selects between current 3 meals
     mclient.query('SELECT * FROM mealplan_breakfast', function (err, brk, fields) {
       if (err) throw err;
       console.log(brk[random]);
@@ -124,13 +124,18 @@ router.post('/generate', function (req, res) {
         if (err) throw err;
         console.log(lun[random]);
         mclient.query('SELECT * FROM mealplan_dinner;', function (err, din, fields) {
-          mclient.release();
+          
          if (err) throw err;
          console.log(din[random]);
          res.send({calories: generateMealPlan(),
           breakfast: brk[random],
           lunch: lun[random],
           dinner: din[random]});
+          mclient.query('UPDATE meals SET meal1="'+random+'", meal2="'+random+'", meal3="'+random+'" WHERE UserID="'+req.user.id+'"', function (err, din, fields) {
+            mclient.release();
+            if (err) throw err;
+            console.log("Updated current meal plans for user: " + req.user.id);
+          });
      });
     });
     });

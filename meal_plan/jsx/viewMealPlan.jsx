@@ -37,16 +37,6 @@ axios.post('/generateMealPlan/generate')
 // return calories;
 });
   }
-// not sure exactly how to use axios properly to display
-// but a response is recieved with required data...
-
-// function callback(call)
-// {
-//   var cal = call;
-//   console.log(cal.data);
-//   var calories = cal.data.calories;
-//   return cal.data.calories;
-// }
 
 render () {
   const breakfast = this.state.breakfast;

@@ -10,6 +10,7 @@ class Survey extends React.Component {
         super(props);
         this.changeInput = this.changeInput.bind(this);
         this.submit = this.submit.bind(this);
+        this.select = this.select.bind(this)
         this.state = {
             gender: '',
             height: '',
@@ -26,6 +27,16 @@ class Survey extends React.Component {
         this.setState({
             [id] : value
         });
+        
+    }
+
+    select(e, data) {
+        let value = data.value;
+        let id = data.id;
+        this.setState({
+            [id]: value
+        });
+        
     }
     submit() {
     
@@ -85,7 +96,7 @@ class Survey extends React.Component {
                     <Form.Input id='gender' fluid label='Gender' placeholder='Read only' onChange={this.changeInput} width={6}/>
                 </Form.Group> */}
                 <Form.Group widths='equal'>
-                    <Dropdown id='gender' placeholder='Select Goal' fluid selection options={genderoptions} onChange={this.changeInput} />
+                    <Dropdown id='gender' placeholder='Select a Gender' fluid label='Gender' fluid selection options={genderoptions} onChange={this.select} />
                 </Form.Group>
                 <Form.Group widths='equal'>
                     <Form.Input id='height' fluid label='Height' placeholder='Read only' onChange={this.changeInput}/>
@@ -97,10 +108,10 @@ class Survey extends React.Component {
                     <Form.Input id='age' fluid label='Age' placeholder='Read only' onChange={this.changeInput}/>
                 </Form.Group>
                 <Form.Group widths='equal'>
-                    <Form.Dropdown id='activityLevel' fluid label='Activity Level' placeholder='Select Activity Level' fluid selection options={activityLevelOpts} onChange={this.changeInput} />
+                    <Form.Dropdown id='activityLevel' fluid label='Activity Level' placeholder='Select Activity Level' fluid selection options={activityLevelOpts} onChange={this.select} />
                 </Form.Group>
                 <Form.Group widths='equal'>
-                    <Dropdown id='allergies' fluid label="Allergy" placeholder='None' fluid multiple selection options={options} onChange={this.changeInput}/>
+                    <Dropdown id='allergies' fluid label="Allergy" placeholder='None' fluid multiple selection options={options} onChange={this.select}/>
                     {/* <Form.Input id='allergies' fluid label='allergies' placeholder='Read only' onChange={this.changeInput}/> */}
                 </Form.Group>
                 <Button basic color='green' onClick={this.submit} >Submit</Button>

@@ -1,19 +1,43 @@
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Container, Grid, Card, Icon, Image, Menu, Progress } from 'semantic-ui-react';
 import Profile from './profile.jsx';
 import NavBar from './navBar.jsx';
+import axios from 'axios';
 
 
 class Dashboard extends React.Component {
-  constructor(props, context) {
+  constructor(props, context)
+  {
     super(props, context);
+    this.state = {
+      meal1: "",
+      meal2: "",
+      meal3: ""
+    }
   }
+
+  componentDidMount() {
+  var _this = this;
+  axios.post('/viewMealPlan/view')
+.then(function(response)
+{
+ console.log(response);
+ _this.setState({
+  meal1: response.data.breakfast,
+  meal2: response.data.lunch,
+  meal3: response.data.dinner
+});
+});
+}
+
+  
 
 
   render() {
-
+    const meal1 = this.state.meal1;
+    const meal2 = this.state.meal2;
+    const meal3 = this.state.meal3;
     return (
       <Container fluid>
         <NavBar></NavBar>
@@ -34,8 +58,17 @@ class Dashboard extends React.Component {
 
             <Grid.Column>
               <Container className="dashPanel" >
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa strong. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede link mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.</p>
-              </Container>
+              Breakfast: 
+                {meal1.name}
+                <br />
+                <br />
+                Lunch: 
+                {meal2.name}
+                <br />
+                <br />
+                Dinner: 
+                {meal3.name}
+                </Container>
             </Grid.Column>
 
           </Grid.Row>

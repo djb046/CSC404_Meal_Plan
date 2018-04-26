@@ -43,12 +43,14 @@ class Dashboard extends React.Component {
               <Container className="dashPanel" >
                 <Profile />
               </Container>
-
             </Grid.Column>
 
+<<<<<<< HEAD
             <Grid.Column fluid stretched>
               <Container className="" >
                 <Progress percent={50} inverted color='orange' progress />
+=======
+>>>>>>> 594a49aed62d825b06a50aab5d2f500b2dc99d42
               </Container>
             </Grid.Column>
 
@@ -57,7 +59,6 @@ class Dashboard extends React.Component {
                 <Item.Group divided>
                   <Item>
                     <Item.Image size='tiny' src='images/bacon.jpg' />
-
                     <Item.Content>
                       <Item.Header>Breakfast:</Item.Header>
                       <Item.Description>

@@ -4,9 +4,15 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+<<<<<<< HEAD
 html {
   height: 100%;
 }
+=======
+
+}
+
+>>>>>>> 594a49aed62d825b06a50aab5d2f500b2dc99d42
 .meal_card {
   margin: auto;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);

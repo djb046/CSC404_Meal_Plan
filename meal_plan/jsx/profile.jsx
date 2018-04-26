@@ -4,7 +4,7 @@ import { Container, Card, Icon, Image, Grid, Segment, Button } from 'semantic-ui
 
 
 const Profile = () => (
-    <Grid columns='equal' >
+    <Grid columns='equal'>
         <Grid.Row verticalAlign='middle'>
         {/* Avatar Image must be 150x150px! */}       
             <Image centered circular src="images/ghost.jpg"/>                

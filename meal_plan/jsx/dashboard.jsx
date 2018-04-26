@@ -46,7 +46,7 @@ class Dashboard extends React.Component {
 
             </Grid.Column>
 
-            <Grid.Column>
+            <Grid.Column fluid stretched>
               <Container className="" >
                 <Progress percent={50} inverted color='orange' progress />
               </Container>

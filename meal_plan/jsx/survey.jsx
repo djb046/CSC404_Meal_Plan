@@ -103,7 +103,9 @@ class Survey extends React.Component {
                     <Form.Input id='height' fluid label='Height' placeholder='Read only' onChange={this.changeInput}/>
                 </Form.Group>
                 <Form.Group widths='equal'>
-                    <Form.Input id='weight' fluid label='Weight' placeholder='Read only' onChange={this.changeInput}/>
+                    <Form.Input id='weight' fluid label='Weight' 
+                    label={{ basic: true, content: 'kg' }}
+                    labelPosition='right' placeholder='Read only' onChange={this.changeInput}/>
                 </Form.Group>
                 <Form.Group widths='equal'>
                     <Form.Input id='age' fluid label='Age' placeholder='Read only' onChange={this.changeInput}/>

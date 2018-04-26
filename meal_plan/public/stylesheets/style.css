@@ -4,6 +4,18 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+
+h1 {
+    border-bottom: 8px solid #F26202;
+    font-size: 24px;
+    display: inline-block;
+}
+
+.title {
+    border-bottom: 1px solid #DEDEDF;
+    margin-bottom: 20px;
+}
+
 .meal_card {
   margin: auto;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -100,7 +112,7 @@ a{
   border-color: #21BA45;
   border-style: outset;
   border-width: 5px;
-  margin-top: 10%;
+  /* margin-top: 10%; */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
 }
 

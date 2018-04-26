@@ -92,12 +92,15 @@ class Survey extends React.Component {
             <Container fluid>
             <NavBar></NavBar>
             <Container className="dashPanel">
+            <div className="title">
+                <h1>Profile</h1>
+            </div>
             <Form>
                 {/* <Form.Group widths='equal'>
                     <Form.Input id='gender' fluid label='Gender' placeholder='Read only' onChange={this.changeInput} width={6}/>
                 </Form.Group> */}
                 <Form.Group widths='equal'>
-                    <Dropdown id='gender' placeholder='Select a Gender' fluid label='Gender' fluid selection options={genderoptions} onChange={this.select} />
+                    <Form.Dropdown id='gender' placeholder='Select a Gender' fluid label='Gender' fluid selection options={genderoptions} onChange={this.select} />
                 </Form.Group>
                 <Form.Group widths='equal'>
                     <Form.Input id='height' fluid label='Height' placeholder='Read only' onChange={this.changeInput}/>
@@ -112,10 +115,10 @@ class Survey extends React.Component {
                     <Form.Dropdown id='activityLevel' fluid label='Activity Level' placeholder='Select Activity Level' fluid selection options={activityLevelOpts} onChange={this.select} />
                 </Form.Group>
                 <Form.Group widths='equal'>
-                    <Dropdown id='allergies' fluid label="Allergy" placeholder='None' fluid multiple selection options={options} onChange={this.select}/>
+                    <Form.Dropdown id='allergies' fluid label="Allergy" placeholder='None' fluid multiple selection options={options} onChange={this.select}/>
                     {/* <Form.Input id='allergies' fluid label='allergies' placeholder='Read only' onChange={this.changeInput}/> */}
                 </Form.Group>
-                <Button basic color='green' onClick={this.submit} >Submit</Button>
+                <Button color='orange' onClick={this.submit} >Submit</Button>
             </Form>
             </Container>
             </Container>

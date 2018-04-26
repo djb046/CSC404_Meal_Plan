@@ -4,6 +4,7 @@ import { Container, Grid, Card, Icon, Image, Menu, Progress, Item, Modal, Button
 import Profile from './profile.jsx';
 import NavBar from './navBar.jsx';
 import axios from 'axios';
+import Charts from './charts.jsx';
 
 class Dashboard extends React.Component {
   constructor(props, context)
@@ -39,30 +40,45 @@ class Dashboard extends React.Component {
         <NavBar></NavBar>
         <Grid divided='vertically' centered>
           <Grid.Row columns={3} >
+            {/*Profile Column!*/}
             <Grid.Column width="3" verticalAlign="left" color="white" key="white">
               <Container className="dashPanel" >
+                <div className="title">
+                  <h1>Cardinal Copia</h1>
+                </div>
                 <Profile />
               </Container>
             </Grid.Column>
 
-<<<<<<< HEAD
-            <Grid.Column fluid stretched>
-              <Container className="" >
-                <Progress percent={50} inverted color='orange' progress />
-=======
->>>>>>> 594a49aed62d825b06a50aab5d2f500b2dc99d42
+            {/*Statistics Column!*/}
+            {/*Will be used to display any sort of userbased statistics*/}
+            {/*Added react-google-charts for our chart needs*/}
+            <Grid.Column>
+              <Container>
+                <div className="title">
+                  <h1 centered>Your Progress</h1>
+                </div>
+                <Charts />
+                <br/><br/>
+                <Progress percent={75} inverted color='orange' progress />
               </Container>
             </Grid.Column>
 
+            {/*Meal Plan Column!*/}
             <Grid.Column fluid stretched>
               <Container className="dashPanel" >
+              <div className="title">
+                <h1>Today's Meals</h1>
+              </div>
                 <Item.Group divided>
+                  {/*Breakfast*/}
                   <Item>
                     <Item.Image size='tiny' src='images/bacon.jpg' />
                     <Item.Content>
                       <Item.Header>Breakfast:</Item.Header>
                       <Item.Description>
                         <Item.Description>
+                        {/*Ingredients Modal*/}
                         <Modal trigger=
                           {<Button size='huge' color='orange' fluid animated='fade'>
                             <Button.Content visible>
@@ -74,7 +90,9 @@ class Dashboard extends React.Component {
                           </Button>} closeIcon>
                           <Header icon='archive' content='Ingredients' />
                           <Modal.Content>
-                            <h1>{meal1.name} contains:</h1><br/>
+                            <div className="title">
+                              <h1>{meal1.name} contains:</h1><br/>
+                            </div>
                             <p>{meal1.Ingredients}</p>
                           </Modal.Content>
                           <Modal.Actions>
@@ -88,18 +106,18 @@ class Dashboard extends React.Component {
                         </Modal>
                       </Item.Description>
                       </Item.Description>
-                      <Item.Extra >
-                        
+                      <Item.Extra>
                       </Item.Extra>
                     </Item.Content>
                   </Item>
 
                   <Item>
+                    {/*Lunch*/}
                     <Item.Image size='tiny' src='images/bacon.jpg' />
-
                     <Item.Content>
                       <Item.Header>Lunch:</Item.Header>
                       <Item.Description>
+                        {/*Ingredients Modal*/}
                         <Modal trigger=
                           {<Button size='huge' color='orange' fluid animated='fade'>
                             <Button.Content visible>
@@ -111,7 +129,9 @@ class Dashboard extends React.Component {
                           </Button>} closeIcon>
                           <Header icon='archive' content='Ingredients' />
                           <Modal.Content>
-                            <h1>{meal2.name} contains:</h1><br/>
+                            <div className="title">
+                              <h1>{meal2.name} contains:</h1><br/>
+                            </div>
                             <p>{meal2.Ingredients}</p>
                           </Modal.Content>
                           <Modal.Actions>
@@ -125,18 +145,18 @@ class Dashboard extends React.Component {
                         </Modal>
                       </Item.Description>
                       <Item.Extra>
-                        
                       </Item.Extra>
                     </Item.Content>
                   </Item>
 
                   <Item>
+                    {/*Dinner*/}
                     <Item.Image size='tiny' src='images/bacon.jpg' />
-
                     <Item.Content>
                       <Item.Header>Dinner:</Item.Header>
                       <Item.Description>
                         <Item.Description>
+                      {/*Ingredients Modal*/}
                         <Modal trigger=
                           {<Button size='huge' color='orange' fluid animated='fade'>
                             <Button.Content visible>
@@ -148,7 +168,9 @@ class Dashboard extends React.Component {
                           </Button>} closeIcon>
                           <Header icon='archive' content='Ingredients' />
                           <Modal.Content>
-                            <h1>{meal3.name} contains:</h1><br/>
+                            <div className="title">
+                              <h1>{meal3.name} contains:</h1><br/>
+                            </div>
                             <p>{meal3.Ingredients}</p>
                           </Modal.Content>
                               <Modal.Actions>

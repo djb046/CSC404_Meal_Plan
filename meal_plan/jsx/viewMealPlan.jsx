@@ -19,7 +19,7 @@ class View extends React.Component
 
   componentDidMount() {
     var _this = this;
-axios.post('/generateMealPlan/generate')
+axios.post('/viewMealPlan/view')
 .then(function(response)
 {
  console.log(response);
@@ -28,13 +28,9 @@ axios.post('/generateMealPlan/generate')
   lunch: response.data.lunch,
   dinner: response.data.dinner
 });
-//  callback(response);
-//  console.log("BMR: "+ calories);
-    console.log("Breakfast: " + response.data.breakfast.name);
-   console.log("Lunch: " + response.data.lunch.name);
-   console.log("Dinner: " + response.data.dinner.name);
-  //  $('#test1').response.data.breakfast.name;
-// return calories;
+  console.log("Breakfast: " + response.data.breakfast.name);
+  console.log("Lunch: " + response.data.lunch.name);
+  console.log("Dinner: " + response.data.dinner.name);
 });
   }
 

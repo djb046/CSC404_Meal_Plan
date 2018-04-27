@@ -17,6 +17,33 @@ class View extends React.Component
     }
   }
 
+  breakfast()
+  {
+    axios.post('/viewMealPlan/delete/breakfast')
+    .then(function(response)
+    {
+      location.href = '/viewMealPlan';
+    });
+  }
+
+  lunch()
+  {
+    axios.post('/viewMealPlan/delete/lunch')
+    .then(function(response)
+    {
+      location.href = '/viewMealPlan';
+    });
+  }
+
+  dinner()
+  {
+    axios.post('/viewMealPlan/delete/dinner')
+    .then(function(response)
+    {
+      location.href = '/viewMealPlan';
+    });
+  }
+
   componentDidMount() {
     var _this = this;
 axios.post('/viewMealPlan/view')
@@ -28,13 +55,9 @@ axios.post('/viewMealPlan/view')
   lunch: response.data.lunch,
   dinner: response.data.dinner
 });
-//  callback(response);
-//  console.log("BMR: "+ calories);
-    console.log("Breakfast: " + response.data.breakfast.name);
-   console.log("Lunch: " + response.data.lunch.name);
-   console.log("Dinner: " + response.data.dinner.name);
-  //  $('#test1').response.data.breakfast.name;
-// return calories;
+  console.log("Breakfast: " + response.data.breakfast.name);
+  console.log("Lunch: " + response.data.lunch.name);
+  console.log("Dinner: " + response.data.dinner.name);
 });
   }
 
@@ -65,6 +88,7 @@ return (
              <Divider hidden />
              Ingredients: {breakfast.Ingredients}
              </Segment>
+             <Button color='red' onClick={this.breakfast}> Remove Breakfast </Button>
           </Container>
 
         </Grid.Column>
@@ -84,7 +108,9 @@ return (
              <Divider hidden />
              Ingredients: {lunch.Ingredients}
              </Segment>
+             <Button color='red' onClick={this.lunch}> Remove Lunch </Button>
           </Container>
+          
         </Grid.Column>
 
         <Grid.Column>
@@ -102,11 +128,13 @@ return (
              <Divider hidden />
              Ingredients: {dinner.Ingredients}
              </Segment>
+             <Button color='red' onClick={this.dinner}> Remove Dinner </Button>
             </Container>
         </Grid.Column>
 
       </Grid.Row>
     </Grid>
+    
   </Container>
 
 )

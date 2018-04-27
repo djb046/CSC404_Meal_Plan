@@ -63,7 +63,7 @@ class Create extends React.Component {
                 activityLevel: this.state.actLevel
             }
         }).then(function (response) {
-            // location.href = '/viewMealPlan';
+            //   location.href = '/viewMealPlan';
             console.log(location);
         }).catch(function (error) {
                 console.log(error);
@@ -76,11 +76,13 @@ class Create extends React.Component {
                     activityLevel: this.state.actLevel
                 }
             }).then(function (response) {
-                location.href = '/viewMealPlan';
+                  location.href = '/viewMealPlan';
                 console.log(location);
             }).catch(function (error) {
                     console.log(error);
                 });
+            
+            
     }
 
  

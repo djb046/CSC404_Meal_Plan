@@ -25,12 +25,15 @@ var dashboard = require('./routes/dashboard');
 
 var AMAZON_CLIENT_ID = "amzn1.application-oa2-client.c84a394dab3c4fea9d228b3881caf672"
 var AMAZON_CLIENT_SECRET = "7f09ba172422925cc657d73fb59bcd1384a22a6f74190bd8cefec554a7fea5f4";
+var FITBIT_CLIENT_ID = "22CX5T";
+var FITBIT_CLIENT_SECRET = "a3bd56e066315c5f394ac9c20e017a5a";
 
 passport.serializeUser(function (user, done) {
   done(null, user);
 });
 
 passport.deserializeUser(function (obj, done) {
+  
   done(null, obj);
 });
 
@@ -53,7 +56,25 @@ passport.use(new AmazonStrategy({
   }
 ));
 
+var FitbitStrategy = require( 'passport-fitbit-oauth2' ).FitbitOAuth2Strategy;;
+
+passport.use(new FitbitStrategy({
+    clientID:     FITBIT_CLIENT_ID,
+    clientSecret: FITBIT_CLIENT_SECRET,
+    callbackURL: "http://localhost:3000/auth/fitbit/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+     process.nextTick(function () {
+    // User.findOrCreate({ fitbitId: profile.id }, function (err, user) {
+      // return done(err, user);
+      });
+     return done(null, user);
+  }
+));
+
 var app = express();
+
+
 console.log('listening on port 3000')
 
 // view engine setup
@@ -100,6 +121,15 @@ app.get('/test', function (req, res) {
 app.get('/testNutes', function (req, res) {
   res.render('nutritionTest', {});
 });
+
+app.get('/auth/fitbit',
+  passport.authenticate('fitbit', { scope: ['activity','heartrate','location','profile'] }
+));
+
+app.get( '/auth/fitbit/callback', passport.authenticate( 'fitbit', { 
+        successRedirect: '/auth/fitbit/success',
+        failureRedirect: '/auth/fitbit/failed'
+}));
 
 app.get('/auth/amazon',
   passport.authenticate('amazon', { scope: ['profile', 'postal_code'] }),

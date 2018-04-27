@@ -27,6 +27,7 @@
     "nutrition-label-jquery-plugin": "^8.0.5",
     "passport": "^0.4.0",
     "passport-amazon": "^1.0.0",
+    "passport-fitbit-oauth2": "^1.0.2",
     "react-background-slideshow": "^1.0.3",
     "react-bootstrap": "^0.32.1",
     "react-google-charts": "^1.5.7",

@@ -18,6 +18,10 @@ const Profile = () => (
         <Grid.Row columns='equal' verticalAlign= 'center'>
             <Button centered color='orange' className='dashButton2' href='/createMealPlan' >Generate Meal Plan</Button>
         </Grid.Row>
+        <Button centered color='orange' className='dashButton2' href='/auth/fitbit' > Sync Fitbit</Button>
+        <Grid.Row>
+
+            </Grid.Row>
         
     </Grid>
 

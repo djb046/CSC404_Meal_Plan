@@ -13,7 +13,12 @@ class Dashboard extends React.Component {
     this.state = {
       meal1: "",
       meal2: "",
-      meal3: ""
+      meal3: "",
+      calculatedbmr: 0,
+      currentcalories: 0,
+      caloriesburned: 0,
+      name: ""
+
     }
   }
 
@@ -26,8 +31,14 @@ class Dashboard extends React.Component {
  _this.setState({
   meal1: response.data.breakfast,
   meal2: response.data.lunch,
-  meal3: response.data.dinner
+  meal3: response.data.dinner,
+  calculatedbmr: response.data.calculatedbmr,
+  currentcalories: response.data.currentcalories,
+  caloriesburned: response.data.caloriesburned,
+  name: response.data.name
+  
 });
+console.log(response.data);
 });
 }
 
@@ -35,6 +46,11 @@ class Dashboard extends React.Component {
     const meal1 = this.state.meal1;
     const meal2 = this.state.meal2;
     const meal3 = this.state.meal3;
+    const calculatedbmr = this.state.calculatedbmr;
+    const currentcalories = this.state.currentcalories;
+    const name = this.state.name;
+    const caloriesburned = this.state.caloriesburned;
+    const totalcal = meal1.Calories + meal2.Calories + meal3.Calories;
     return (
       <Container fluid>
         <NavBar></NavBar>
@@ -44,7 +60,7 @@ class Dashboard extends React.Component {
             <Grid.Column width="3" verticalAlign="left" color="white" key="white">
               <Container className="dashPanel" >
                 <div className="title">
-                  <h1>Cardinal Copia</h1>
+                  <h1>{name}</h1>
                 </div>
                 <Profile />
               </Container>
@@ -60,7 +76,8 @@ class Dashboard extends React.Component {
                 </div>
                 <Charts />
                 <br/><br/>
-                <Progress percent={75} inverted color='orange' progress />
+                Calories burned for today 
+                <Progress percent={Math.floor((caloriesburned/calculatedbmr)*100)} inverted color='orange' progress indicating />
               </Container>
             </Grid.Column>
 
@@ -189,7 +206,13 @@ class Dashboard extends React.Component {
                       </Item.Extra>
                     </Item.Content>
                   </Item>
-                </Item.Group>              
+                </Item.Group>
+                {/* You can set currentcalories in the database to see progress bar. */}
+                Calories currently consumed: {currentcalories} 
+                <br/> 
+                Current calorie goal: {calculatedbmr}
+                <br/>
+                This meal plans total calories are: {totalcal}            
               </Container>
             </Grid.Column>
 

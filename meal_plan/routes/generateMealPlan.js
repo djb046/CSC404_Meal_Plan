@@ -131,7 +131,7 @@ router.post('/generate', function (req, res) {
           breakfast: brk[random],
           lunch: lun[random],
           dinner: din[random]});
-          mclient.query('UPDATE meals SET meal1="'+random+'", meal2="'+random+'", meal3="'+random+'" WHERE UserID="'+req.user.id+'"', function (err, din, fields) {
+          mclient.query('UPDATE meals SET meal1="'+random+'", meal2="'+random+'", meal3="'+random+'", calculatedbmr="'+calorieIntake+'" WHERE UserID="'+req.user.id+'"', function (err, din, fields) {
             mclient.release();
             if (err) throw err;
             console.log("Updated current meal plans for user: " + req.user.id);

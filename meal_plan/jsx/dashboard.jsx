@@ -17,7 +17,13 @@ class Dashboard extends React.Component {
       calculatedbmr: 0,
       currentcalories: 0,
       caloriesburned: 0,
-      name: ""
+      name: "",
+      meal1c: 0,
+      meal2c: 0,
+      meal3c: 0,
+      totalcalories: 0,
+      percent: 0,
+      percent2: 0
 
     }
   }
@@ -35,11 +41,61 @@ class Dashboard extends React.Component {
   calculatedbmr: response.data.calculatedbmr,
   currentcalories: response.data.currentcalories,
   caloriesburned: response.data.caloriesburned,
-  name: response.data.name
+  name: response.data.name,
+  meal1c: response.data.meal1c,
+  meal2c: response.data.meal2c,
+  meal3c: response.data.meal3c,
+  totalcalories: response.data.totalcalories
   
 });
 console.log(response.data);
 });
+}
+
+  breakfastadd() {
+      axios.post('/viewMealPlan/add/breakfast')
+        .then(function (response) {
+           location.href = '/dashboard';
+           console.log("clicked");
+        });
+  }
+
+  breakfastdel(){
+      axios.post('/viewMealPlan/remove/breakfast')
+        .then(function (response) {
+           location.href = '/dashboard';
+          });
+  }
+
+
+  lunchadd() {
+    axios.post('/viewMealPlan/add/lunch')
+      .then(function (response) {
+         location.href = '/dashboard';
+         console.log("clicked");
+      });
+}
+
+lunchdel(){
+    axios.post('/viewMealPlan/remove/lunch')
+      .then(function (response) {
+         location.href = '/dashboard';
+        });
+}
+
+dinneradd() {
+  axios.post('/viewMealPlan/add/dinner')
+    .then(function (response) {
+       location.href = '/dashboard';
+       console.log("clicked");
+    });
+}
+
+dinnerdel(){
+  axios.post('/viewMealPlan/remove/dinner')
+    .then(function (response) {
+       location.href = '/dashboard';
+      });
 }
 
   render() {
@@ -51,6 +107,33 @@ console.log(response.data);
     const name = this.state.name;
     const caloriesburned = this.state.caloriesburned;
     const totalcal = meal1.Calories + meal2.Calories + meal3.Calories;
+    const percent = this.state.percent;
+    const percent2 = this.state.percent2;
+    const meal1c = this.state.meal1c;
+    const meal2c = this.state.meal2c;
+    const meal3c = this.state.meal3c;
+    const totalcalories = this.state.totalcalories;
+    console.log(Math.floor((caloriesburned/calculatedbmr)*100));
+    if (Math.floor((caloriesburned/calculatedbmr)*100) == NaN)
+    {
+      const percent = 0;
+      this.setState({percent: 0});
+    }
+    else
+    {
+      const percent = Math.floor((caloriesburned/calculatedbmr)*100);
+      // this.setState({percent: percentz});
+    }
+
+    if (Math.floor((totalcalories/totalcal)*100) == NaN)
+    {
+      const percent2 = 0;
+    }
+    else
+    {
+      console.log((totalcalories/totalcal)*100);
+      const percent2 = Math.floor((totalcalories/totalcal)*100);
+    }
     return (
       <Container fluid>
         <NavBar></NavBar>
@@ -76,8 +159,10 @@ console.log(response.data);
                 </div>
                 <Charts />
                 <br/><br/>
-                Calories burned for today 
+                Calories burned for today (Calories burned/Calorie Goal)
                 <Progress percent={Math.floor((caloriesburned/calculatedbmr)*100)} inverted color='orange' progress indicating />
+                Meal completion (Meals eaten caloric value/Total meal calories)
+                <Progress percent={Math.floor((totalcalories/totalcal)*100)} inverted color='orange' progress indicating />
               </Container>
             </Grid.Column>
 
@@ -113,10 +198,10 @@ console.log(response.data);
                             <p>{meal1.Ingredients}</p>
                           </Modal.Content>
                           <Modal.Actions>
-                                <Button color='green'>
+                                <Button color='green' onClick={this.breakfastadd}>
                                   <Icon name='checkmark' /> I have eaten this!
                                 </Button>
-                                <Button color='red'>
+                                <Button color='red' onClick={this.breakfastdel}>
                                   <Icon name='ban' /> I have NOT eaten this yet.
                                 </Button>
                               </Modal.Actions>
@@ -152,10 +237,10 @@ console.log(response.data);
                             <p>{meal2.Ingredients}</p>
                           </Modal.Content>
                           <Modal.Actions>
-                                <Button color='green'>
+                                <Button color='green' onClick={this.lunchadd}>
                                   <Icon name='checkmark' /> I have eaten this!
                                 </Button>
-                                <Button color='red'>
+                                <Button color='red' onClick={this.lunchdel}>
                                   <Icon name='ban' /> I have NOT eaten this yet.
                                 </Button>
                               </Modal.Actions>
@@ -191,10 +276,10 @@ console.log(response.data);
                             <p>{meal3.Ingredients}</p>
                           </Modal.Content>
                               <Modal.Actions>
-                                <Button color='green'>
+                                <Button color='green' onClick={this.dinneradd}>
                                   <Icon name='checkmark' /> I have eaten this!
                                 </Button>
-                                <Button color='red'>
+                                <Button color='red' onClick={this.dinnerdel}>
                                   <Icon name='ban' /> I have NOT eaten this yet.
                                 </Button>
                               </Modal.Actions>
@@ -208,11 +293,11 @@ console.log(response.data);
                   </Item>
                 </Item.Group>
                 {/* You can set currentcalories in the database to see progress bar. */}
-                Calories currently consumed: {currentcalories} 
+                Calories currently consumed: {totalcalories}
                 <br/> 
-                Current calorie goal: {calculatedbmr}
+                This meal plans total calories are: {totalcal} 
                 <br/>
-                This meal plans total calories are: {totalcal}            
+                Current calorie goal: {calculatedbmr}     
               </Container>
             </Grid.Column>
 

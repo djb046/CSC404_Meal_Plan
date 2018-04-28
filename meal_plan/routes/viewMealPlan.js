@@ -6,6 +6,8 @@ router.get('/', function (req, res, next) {
     res.render('view-meal-plan', {});
 });
 
+
+
 router.post('/delete/breakfast', function (req, res) {
   db.getConnection(function (err, mclient) {
     mclient.query('UPDATE meals SET meal1=0 WHERE UserID= "'+req.user.id+'"', function (err, rows, fields) {
@@ -28,14 +30,73 @@ router.post('/delete/lunch', function (req, res) {
 
 router.post('/delete/dinner', function (req, res) {
   db.getConnection(function (err, mclient) {
-    mclient.query('UPDATE meals SET meal3=0 WHERE UserID= "'+req.user.id+'"', function (err, rows, fields) {
+    mclient.query('UPDATE meals SET meal3=0, currentcalories= WHERE UserID= "'+req.user.id+'"', function (err, rows, fields) {
       if (err) throw err;
       console.log("Deleted dinner for " + req.user.id);
       res.redirect('/viewMealPlan');
     });
   });
 });
+// ############
+router.post('/add/breakfast', function (req, res) {
+  db.getConnection(function (err, mclient) {
+    mclient.query('UPDATE meals SET meal1c=1 WHERE UserID="'+req.user.id+'"', function (err, rows, fields) {
+      mclient.release();
+       res.redirect('/dashboard');
+      if (err) throw err;
+    });
+  });
+});
 
+router.post('/remove/breakfast', function (req, res) {
+  db.getConnection(function (err, mclient) {
+    mclient.query('UPDATE meals SET meal1c=0 WHERE UserID="'+req.user.id+'"', function (err, rows, fields) {
+      mclient.release();
+      res.redirect('/dashboard');
+      if (err) throw err;
+    });
+  });
+});
+
+router.post('/add/lunch', function (req, res) {
+  db.getConnection(function (err, mclient) {
+    mclient.query('UPDATE meals SET meal2c=1 WHERE UserID="'+req.user.id+'"', function (err, rows, fields) {
+      mclient.release();
+       res.redirect('/dashboard');
+      if (err) throw err;
+    });
+  });
+});
+
+router.post('/remove/lunch', function (req, res) {
+  db.getConnection(function (err, mclient) {
+    mclient.query('UPDATE meals SET meal2c=0 WHERE UserID="'+req.user.id+'"', function (err, rows, fields) {
+      mclient.release();
+      res.redirect('/dashboard');
+      if (err) throw err;
+    });
+  });
+});
+router.post('/add/dinner', function (req, res) {
+  db.getConnection(function (err, mclient) {
+    mclient.query('UPDATE meals SET meal3c=1 WHERE UserID="'+req.user.id+'"', function (err, rows, fields) {
+      mclient.release();
+       res.redirect('/dashboard');
+      if (err) throw err;
+    });
+  });
+});
+
+router.post('/remove/dinner', function (req, res) {
+  db.getConnection(function (err, mclient) {
+    mclient.query('UPDATE meals SET meal3c=0 WHERE UserID="'+req.user.id+'"', function (err, rows, fields) {
+      mclient.release();
+      res.redirect('/dashboard');
+      if (err) throw err;
+    });
+  });
+});
+// #############
 router.post('/view', function (req, res) {
     db.getConnection(function (err, mclient) {
       // random = Math.floor(Math.random() * 3); //selects between current 3 meals
@@ -54,11 +115,16 @@ router.post('/view', function (req, res) {
         meal1 = rows[0].meal1;
         meal2 = rows[0].meal2;
         meal3 = rows[0].meal3;
+
         calculatedbmr = rows[0].calculatedbmr;
         currentcalories = rows[0].currentcalories;
         caloriesburned = rows[0].caloriesburned;
+        meal1c = rows[0].meal1c;
+        meal2c = rows[0].meal2c;
+        meal3c = rows[0].meal3c;
         name = req.user.displayName;
-        console.log("reach here");
+
+
         //    res.send({meals: rows[0]});
            mclient.query('SELECT * FROM mealplan_breakfast', function (err, brk, fields) {
             if (err) throw err;
@@ -70,6 +136,21 @@ router.post('/view', function (req, res) {
                 mclient.release();
                if (err) throw err;
               //  console.log(din[meal1]);
+              meal1calories = brk[meal1].Calories;
+              meal2calories = lun[meal2].Calories;
+              meal3calories = din[meal3].Calories;
+              totalcalories = 0;
+              // totalcalories = meal1calories + meal2calories + meal3calories;
+                if (meal1c == 1) {
+                  totalcalories += meal1calories;
+                }
+               if (meal2c == 1) {
+                  totalcalories += meal2calories;
+                }
+               if (meal3c == 1) {
+                  totalcalories += meal3calories;
+                }
+                
                res.send({
                 breakfast: brk[meal1],
                 lunch: lun[meal2],
@@ -77,7 +158,11 @@ router.post('/view', function (req, res) {
                 calculatedbmr: calculatedbmr,
                 currentcalories: currentcalories,
                 name: name,
-                caloriesburned: caloriesburned});
+                caloriesburned: caloriesburned,
+                meal1c: meal1c,
+                meal2c: meal2c,
+                meal3c: meal3c,
+                totalcalories: totalcalories});
            });
           });
           });

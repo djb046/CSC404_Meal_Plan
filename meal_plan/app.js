@@ -61,14 +61,15 @@ var FitbitStrategy = require( 'passport-fitbit-oauth2' ).FitbitOAuth2Strategy;;
 passport.use(new FitbitStrategy({
     clientID:     FITBIT_CLIENT_ID,
     clientSecret: FITBIT_CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/auth/fitbit/callback"
+    callbackURL: "http://localhost:3000/auth/fitbit/callback",
+    profileFields: ['activity']
   },
   function(accessToken, refreshToken, profile, done) {
      process.nextTick(function () {
     // User.findOrCreate({ fitbitId: profile.id }, function (err, user) {
       // return done(err, user);
       });
-     return done(null, user);
+     return done(null, profile);
   }
 ));
 
@@ -114,6 +115,7 @@ app.get('/', function (req, res) {
 //   res.render('account', { user: req.user });
 // });
 
+var id = '';
 app.get('/test', function (req, res) {
   res.render('test', {});
 });
@@ -123,13 +125,24 @@ app.get('/testNutes', function (req, res) {
 });
 
 app.get('/auth/fitbit',
-  passport.authenticate('fitbit', { scope: ['activity','heartrate','location','profile'] }
+  passport.authenticate('fitbit', { scope: ['activity','heartrate','location','profile', 'weight', 'nutrition', 'social', 'settings', 'sleep'] }
 ));
 
 app.get( '/auth/fitbit/callback', passport.authenticate( 'fitbit', { 
         successRedirect: '/auth/fitbit/success',
-        failureRedirect: '/auth/fitbit/failed'
-}));
+        failureRedirect: '/auth/fitbit/failed',
+        scope: ['activity','heartrate']
+}),
+function (req, res) {
+
+});
+
+app.get('/auth/fitbit/success', function(req, res, next) {
+  console.log(req.user._json);
+  req.user.id = id;
+  res.redirect('/');
+  
+});
 
 app.get('/auth/amazon',
   passport.authenticate('amazon', { scope: ['profile', 'postal_code'] }),
@@ -149,7 +162,7 @@ app.get('/auth/amazon/callback',
     db.getConnection(function (err, mclient) {//"'+id+'", "'+displayName+'"
       mclient.query('INSERT INTO amazonAuth(id, name, new) VALUES ("' + req.user.id + '", "' + req.user.displayName + '", 0) ON DUPLICATE KEY UPDATE amazonAuth.name = amazonAuth.name ', function (err, rows, fields) {
          //mclient.release();
-
+        id = req.user.id;
         if (err) throw err;
 
         console.log("Attempting to add a new user...");

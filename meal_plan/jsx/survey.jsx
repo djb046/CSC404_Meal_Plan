@@ -26,9 +26,6 @@ class Survey extends React.Component {
     changeInput(e) {
         var id = e.target.id;
         var value = e.target.value;
-        if (id == 'feet' || id == 'inches'){
-
-        }
 
         this.setState({
             [id] : value
@@ -47,7 +44,7 @@ class Survey extends React.Component {
     submit() {
         this.state.height = this.state.feet + "'" + this.state.inches + "''";
         console.log(this.state.height)
-        /*axios({
+        axios({
             method: 'post',
             url: '/survey/submit',
             data: {
@@ -65,7 +62,7 @@ class Survey extends React.Component {
           })
           .catch(function (error) {
             console.log(error);
-          });*/
+          });
     }
 
     joinHeight(feet,inches){

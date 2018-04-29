@@ -64,12 +64,12 @@ passport.use(new FitbitStrategy({
     callbackURL: "http://localhost:3000/auth/fitbit/callback",
     profileFields: ['activity']
   },
-  function(accessToken, refreshToken, profile, done) {
+  function(accessToken, refreshToken, profile, activity, done) {
      process.nextTick(function () {
     // User.findOrCreate({ fitbitId: profile.id }, function (err, user) {
       // return done(err, user);
       });
-     return done(null, profile);
+     return done(null, profile, activity);
   }
 ));
 
@@ -138,7 +138,7 @@ function (req, res) {
 });
 
 app.get('/auth/fitbit/success', function(req, res, next) {
-  console.log(req.user._json);
+  console.log(req.user._json.user.averageDailySteps);
   req.user.id = id;
   res.redirect('/');
   

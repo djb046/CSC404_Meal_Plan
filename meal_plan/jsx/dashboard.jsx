@@ -111,6 +111,22 @@ dinnerdel(){
     const meal2c = this.state.meal2c;
     const meal3c = this.state.meal3c;
     const totalcalories = this.state.totalcalories;
+    var percent = 0;
+    var percent2 = 0;
+
+    if (Math.floor((caloriesburned/calculatedbmr)*100) >= 0)
+    {
+      percent = Math.floor((caloriesburned/calculatedbmr)*100);
+    } else {
+      percent = 0;
+    }
+
+    if (Math.floor((totalcalories/totalcal)*100) >= 0)
+    {
+      percent2 = Math.floor((totalcalories/totalcal)*100);
+    } else {
+      percent2 = 0;
+    }
     return (
       <Container fluid>
         <NavBar></NavBar>

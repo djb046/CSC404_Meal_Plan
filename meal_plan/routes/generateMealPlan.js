@@ -92,7 +92,7 @@ function generateMealPlan() {
     // to gain weight we must add around 500 calories (this is a changing factor) to the intake amount
     // for this we will need to ask them again in the quick survey if this diet is selected how main pounds
     // are they trying to gain, normal (healthy) amount are 0.5lb (+250 calories) and 1lb (+500 calories) a week
-    neededCalories = 500 /* 250 ?*/; //again we will check and change this value depending on amount loss
+    neededCalories = 250 /* 250 ?*/; //again we will check and change this value depending on amount loss
     calorieIntake = calculateBMR() + neededCalories;
   } else if (dietType == 'loss') {
     // to lose weight we must subtract around 500 calories(this is a changing factor) to the intake amount
@@ -117,21 +117,24 @@ function generateMealPlan() {
 router.post('/generate', function (req, res) {
   db.getConnection(function (err, mclient) {
     random = Math.floor(Math.random() * (3 - 1 + 1)) + 1; //selects between current 3 meals
+    random2 = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+    random3 = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+
     mclient.query('SELECT * FROM mealplan_breakfast', function (err, brk, fields) {
       if (err) throw err;
       console.log(brk[random]);
       mclient.query('SELECT * FROM mealplan_lunch', function (err, lun, fields) {
         if (err) throw err;
-        console.log(lun[random]);
+        console.log(lun[random2]);
         mclient.query('SELECT * FROM mealplan_dinner;', function (err, din, fields) {
-          
+
          if (err) throw err;
-         console.log(din[random]);
+         console.log(din[random3]);
          res.send({calories: generateMealPlan(),
           breakfast: brk[random],
-          lunch: lun[random],
-          dinner: din[random]});
-          mclient.query('UPDATE meals SET meal1="'+random+'", meal2="'+random+'", meal3="'+random+'", calculatedbmr="'+calorieIntake+'" WHERE UserID="'+req.user.id+'"', function (err, din, fields) {
+          lunch: lun[random2],
+          dinner: din[random3]});
+          mclient.query('UPDATE meals SET meal1="'+random+'", meal2="'+random2+'", meal3="'+random3+'", meal1c=0, meal2c=0, meal3c=0, calculatedbmr="'+calorieIntake+'" WHERE UserID="'+req.user.id+'"', function (err, din, fields) {
             mclient.release();
             if (err) throw err;
             console.log("Updated current meal plans for user: " + req.user.id);

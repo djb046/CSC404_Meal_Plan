@@ -14,6 +14,10 @@ h1{
   display: inline-block;
 }
 
+h4{
+  font-size: 24px;
+  color: green;
+}
 .title{
   border-bottom: 1px solid #DEDEDF;
   margin-bottom: 20px;
@@ -42,9 +46,6 @@ img {
     padding: 2px 40px;
 }
 
-a{
-  display: block;
-}
 
 .removebtn {
     padding-left: 15px;
@@ -105,6 +106,7 @@ a{
   left: 0;
   top: 0;
   z-index: 10;
+  overflow: auto;
 }
 
 .dashPanel {
@@ -117,6 +119,12 @@ a{
   border-width: 5px;
   /* margin-top: 10%; */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+  overflow: auto;
+}
+
+.dashPanel2 {
+  height: 90% !important;
+  width: 100% !important;
   overflow: auto;
 }
 

@@ -130,21 +130,23 @@ dinnerdel(){
             {/*Will be used to display any sort of userbased statistics*/}
             {/*Added react-google-charts for our chart needs*/}
             <Grid.Column>
-              <Container>
+              <Container className="dashPanel2">
                 <div className="title">
-                  <h1 centered>Your Progress</h1>
+                  <h1 centered>Today's Progression</h1>
+                </div>
+                <h2 className="title">Calories Consumed</h2>
+                <Progress percent={Math.floor((totalcalories/totalcal)*100)} inverted color='orange' progress indicating />
+                <h2 className="title">Calories Burned</h2>
+                <Progress percent={Math.floor((caloriesburned/calculatedbmr)*100)} inverted color='orange' progress indicating />
+                <div className="title">
+                  <h1 centered>Infographic</h1>
                 </div>
                 <Charts />
-                <br/><br/>
-                Calories burned for today (Calories burned/Calorie Goal)
-                <Progress percent={Math.floor((caloriesburned/calculatedbmr)*100)} inverted color='orange' progress indicating />
-                Meal completion (Meals eaten caloric value/Total meal calories)
-                <Progress percent={Math.floor((totalcalories/totalcal)*100)} inverted color='orange' progress indicating />
               </Container>
             </Grid.Column>
 
             {/*Meal Plan Column!*/}
-            <Grid.Column fluid stretched>
+            <Grid.Column >
               <Container className="dashPanel" >
               <div className="title">
                 <h1>Today's Meals</h1>
@@ -270,11 +272,18 @@ dinnerdel(){
                   </Item>
                 </Item.Group>
                 {/* You can set currentcalories in the database to see progress bar. */}
-                Calories currently consumed: {totalcalories}
-                <br/> 
-                This meal plans total calories are: {totalcal} 
+                <div className="title">
+                  <h1>Calorie Details</h1>
+                </div>
+                <h3 className="title">How Much You've Consumed:</h3>
+                <h4>{totalcalories} calories</h4>
                 <br/>
-                Current calorie goal: {calculatedbmr}     
+                <h3 className="title">Possible from Today's Meal Plan:</h3> 
+                <h4>{totalcal} calories</h4>
+                <br/>
+                <h3 className="title">Current Goal:</h3>
+                <h4>{calculatedbmr} calories</h4>
+                <br/>
               </Container>
             </Grid.Column>
 

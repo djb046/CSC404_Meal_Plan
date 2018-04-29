@@ -4,15 +4,21 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-<<<<<<< HEAD
-html {
-  height: 100%;
-}
-=======
 
+html { overflow-y: scroll; }
+body { position: absolute; }
+
+h1{
+  border-bottom: 8px solid #F26202;
+  font-size: 24px;
+  display: inline-block;
 }
 
->>>>>>> 594a49aed62d825b06a50aab5d2f500b2dc99d42
+.title{
+  border-bottom: 1px solid #DEDEDF;
+  margin-bottom: 20px;
+}
+
 .meal_card {
   margin: auto;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -103,7 +109,7 @@ a{
 
 .dashPanel {
   background: white;
-  height: 100% !important;
+  height: 90% !important;
   width: 100% !important;
   border-radius: 4%;
   border-color: #21BA45;
@@ -111,6 +117,7 @@ a{
   border-width: 5px;
   /* margin-top: 10%; */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+  overflow: auto;
 }
 
 

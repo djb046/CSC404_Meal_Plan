@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Form, Button, Container, Dropdown } from 'semantic-ui-react';
+import { Form, Button, Container, Dropdown, Input, Grid } from 'semantic-ui-react';
 import axios from 'axios';
 import NavBar from './navBar.jsx';
 
@@ -13,6 +13,8 @@ class Survey extends React.Component {
         this.select = this.select.bind(this)
         this.state = {
             gender: '',
+            feet: '',
+            inches:'',
             height: '',
             weight: '',
             age: '',
@@ -24,6 +26,7 @@ class Survey extends React.Component {
     changeInput(e) {
         var id = e.target.id;
         var value = e.target.value;
+
         this.setState({
             [id] : value
         });
@@ -39,7 +42,8 @@ class Survey extends React.Component {
         
     }
     submit() {
-    
+        this.state.height = this.state.feet + "'" + this.state.inches + "''";
+        console.log(this.state.height)
         axios({
             method: 'post',
             url: '/survey/submit',
@@ -61,7 +65,9 @@ class Survey extends React.Component {
           });
     }
 
-
+    joinHeight(feet,inches){
+        var height = feet
+    }
 
     render() {
         const options = [
@@ -91,39 +97,62 @@ class Survey extends React.Component {
         return (
             <Container fluid>
             <NavBar></NavBar>
-            <Container className="dashPanel">
-            <div className="title">
-                <h1>Profile</h1>
-            </div>
-            <Form>
-                {/* <Form.Group widths='equal'>
-                    <Form.Input id='gender' fluid label='Gender' placeholder='Read only' onChange={this.changeInput} width={6}/>
-                </Form.Group> */}
-                <Form.Group widths='equal'>
-                    <Form.Dropdown id='gender' placeholder='Select a Gender' fluid label='Gender' fluid selection options={genderoptions} onChange={this.select} />
-                </Form.Group>
-                <Form.Group widths='equal'>
-                    <Form.Input id='height' fluid label='Height' placeholder='Read only' onChange={this.changeInput}/>
-                </Form.Group>
-                <Form.Group widths='equal'>
-                    <Form.Input id='weight' fluid label='Weight' 
-                    label={{ basic: true, content: 'kg' }}
-                    labelPosition='right' placeholder='Read only' onChange={this.changeInput}/>
-                </Form.Group>
-                <Form.Group widths='equal'>
-                    <Form.Input id='age' fluid label='Age' placeholder='Read only' onChange={this.changeInput}/>
-                </Form.Group>
-                <Form.Group widths='equal'>
-                    <Form.Dropdown id='activityLevel' fluid label='Activity Level' placeholder='Select Activity Level' fluid selection options={activityLevelOpts} onChange={this.select} />
-                </Form.Group>
-                <Form.Group widths='equal'>
-                    <Form.Dropdown id='allergies' fluid label="Allergy" placeholder='None' fluid multiple selection options={options} onChange={this.select}/>
-                    {/* <Form.Input id='allergies' fluid label='allergies' placeholder='Read only' onChange={this.changeInput}/> */}
-                </Form.Group>
-                <Button color='orange' onClick={this.submit} >Submit</Button>
-            </Form>
+            <Grid centered>
+                <Grid.Column width={12}>
+                    <Container className="dashPanel">
+                        <div className="title">
+                            <h1>Profile</h1>
+                        </div>
+                        
+                        <Form>
+                            <Form.Group widths='equal'>
+                                <div className="ui center aligned">
+                                <h3 className="title">Gender</h3>
+                                <Dropdown fluid id='gender' placeholder='Select a Gender' label='Gender' fluid selection options={genderoptions} onChange={this.select} />
+                                </div>
+                            </Form.Group>
+                            <Form.Group widths='equal'>
+                                <div className="ui center aligned">
+                                <h3 className="title">Height</h3>
+                                <Form.Field id='feet' placeholder='feet' control={Input} onChange={this.changeInput}/>
+                                <Form.Field id='inches' placeholder='inches' control={Input} onChange={this.changeInput}/>
+                                </div>
+                            </Form.Group>
+                            <Form.Group>
+                                <div className="ui center aligned">
+                                <h3 className="title">Weight</h3>
+                                <Input fluid id='weight' label={{ basic: true, content: 'lbs' }}
+                                    labelPosition='right' placeholder='Read only' onChange={this.changeInput}/>
+                                </div>
+                            </Form.Group>
+                            <Form.Group widths='equal'>
+                                <div className="ui center aligned">
+                                <h3 className="title">Age</h3>
+                                <Input fluid id='age' placeholder='Read only' onChange={this.changeInput}/>
+                                </div>
+                            </Form.Group>
+                            <Form.Group widths='equal'>
+                                <div className="ui center aligned">
+                                <h3 className="title">Activity Level</h3>
+                                <Dropdown fluid id='activityLevel' label='Activity Level' placeholder='Select Activity Level' fluid selection options={activityLevelOpts} onChange={this.select} />
+                                </div>
+                            </Form.Group>
+                            <Form.Group widths='equal'>
+                                <div className="ui center aligned">
+                                <h3 className="title">Allergies</h3>
+                                <Dropdown fluid id='allergies' label="Allergy" placeholder='None' fluid multiple selection options={options} onChange={this.select}/>
+                                </div>
+                            </Form.Group>
+                            <div className="ui center aligned">
+                            <Button color='orange' onClick={this.submit} >Submit</Button>
+                            </div>
+                        </Form>
+                        
+                    </Container>
+                </Grid.Column>
+            </Grid>
             </Container>
-            </Container>
+            
         )
     }
 }

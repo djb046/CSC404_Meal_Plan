@@ -92,7 +92,7 @@ dinneradd() {
 }
 
 dinnerdel(){
-  axios.post('/viewMealPlan/remove/dinner')
+  axios.post('/viewMealPlan//remove/dinner')
     .then(function (response) {
        location.href = '/dashboard';
       });
@@ -107,33 +107,10 @@ dinnerdel(){
     const name = this.state.name;
     const caloriesburned = this.state.caloriesburned;
     const totalcal = meal1.Calories + meal2.Calories + meal3.Calories;
-    const percent = this.state.percent;
-    const percent2 = this.state.percent2;
     const meal1c = this.state.meal1c;
     const meal2c = this.state.meal2c;
     const meal3c = this.state.meal3c;
     const totalcalories = this.state.totalcalories;
-    console.log(Math.floor((caloriesburned/calculatedbmr)*100));
-    if (Math.floor((caloriesburned/calculatedbmr)*100) == NaN)
-    {
-      const percent = 0;
-      this.setState({percent: 0});
-    }
-    else
-    {
-      const percent = Math.floor((caloriesburned/calculatedbmr)*100);
-      // this.setState({percent: percentz});
-    }
-
-    if (Math.floor((totalcalories/totalcal)*100) == NaN)
-    {
-      const percent2 = 0;
-    }
-    else
-    {
-      console.log((totalcalories/totalcal)*100);
-      const percent2 = Math.floor((totalcalories/totalcal)*100);
-    }
     return (
       <Container fluid>
         <NavBar></NavBar>

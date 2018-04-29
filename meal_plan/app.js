@@ -168,9 +168,7 @@ app.get('/auth/amazon/callback',
         console.log("Attempting to add a new user...");
       });
 
-    });
-
-    db.getConnection(function (err, mclient) {
+    
 
       console.log(req.user.id);
       mclient.query('SELECT new FROM amazonAuth WHERE amazonAuth.id = "' + req.user.id + '"', function (err, rows, fields) {
@@ -187,10 +185,6 @@ app.get('/auth/amazon/callback',
           res.redirect('/dashboard');
         }
         mclient.release();
-        // when survey completed.
-        // UPDATE `mealplan`.`amazonAuth` SET `new`='1' WHERE `id`='amzn1.account.AGC5T3ZS5AH3GDLS76LY4ICG325Q';
-
-        // res.render('Survey', { user: req.user });
 
       });
     });

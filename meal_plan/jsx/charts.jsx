@@ -1,38 +1,57 @@
 import { Chart } from 'react-google-charts';
 import React from 'react';
+import axios from 'axios';
+ 
 
 class Charts extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
       options: {
-        title: 'Performance',
-        hAxis: { title: 'Time', minValue: 0, maxValue: 15 },
-        vAxis: { title: 'Calories', minValue: 0, maxValue: 15 },
-        legend: 'none',
+        title: "Today's Meals Ratio",
+        pieSliceText: 'label',
+        legend: 'true',
+        backgroundColor: { fill:'transparent' },
+        colors: ['#e0440e', '#e6693e', '#ec8f6e']
       },
-      data: [
-        ['Day', 'Eaten', 'Expended'],
-          ['Monday',  1000,      400],
-          ['Tuesday',  1170,      460],
-          ['Wednesday',  660,       1120],
-          ['Thursday',  1030,      540],
-          ['Friday',  1200,      600],
-          ['Saturday',  1000,      100],
-          ['Sunday',  1110,      200],
+      data: [['Macro','Nutrients'],
+          ['Fat',  0],
+          ['Protein',  0],
+          ['Carbs',  0],
       ],
     };
   }
+
+  componentDidMount() {
+  var _this = this;
+  axios.post('/viewMealPlan/view')
+.then(function(response)
+{
+ console.log(response);
+ _this.setState({
+  data: [['Macro','Nutrients'],
+          ['Fat',  parseInt(response.data.breakfast.Fat + response.data.lunch.Fat + response.data.dinner.Fat)],
+          ['Protein',  parseInt(response.data.breakfast.Protein + response.data.lunch.Protein + response.data.dinner.Protein)],
+          ['Carbs',  parseInt(response.data.breakfast.Carbs + response.data.lunch.Carbs + response.data.dinner.Carbs)],
+      ], 
+});
+console.log(response.data);
+});
+}
+
+
   render() {
+
     return (
       <Chart
-        chartType="LineChart"
+        chartType="PieChart"
         data={this.state.data}
         options={this.state.options}
-        graph_id="LineChart"
+        graph_id="PieChart"
         width="100%"
         height="400px"
-        legend_toggle
+        
       />
     );
   }

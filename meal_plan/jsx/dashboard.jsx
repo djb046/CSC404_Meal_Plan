@@ -92,7 +92,7 @@ dinneradd() {
 }
 
 dinnerdel(){
-  axios.post('/viewMealPlan//remove/dinner')
+  axios.post('/viewMealPlan/remove/dinner')
     .then(function (response) {
        location.href = '/dashboard';
       });
@@ -151,11 +151,11 @@ dinnerdel(){
                   <h1 centered>Today's Progression</h1>
                 </div>
                 <h2 className="title">Calories Consumed</h2>
-                <Progress percent={Math.floor((totalcalories/totalcal)*100)} inverted color='orange' progress indicating />
+                <Progress percent={percent2} inverted color='orange' progress indicating />
                 <h2 className="title">Calories Burned</h2>
-                <Progress percent={Math.floor((caloriesburned/calculatedbmr)*100)} inverted color='orange' progress indicating />
+                <Progress percent={percent} inverted color='orange' progress indicating />
                 <div className="title">
-                  <h1 centered>Infographic</h1>
+                  <h1 centered>Macronutrients Chart</h1>
                 </div>
                 <Charts />
               </Container>
@@ -291,15 +291,14 @@ dinnerdel(){
                 <div className="title">
                   <h1>Calorie Details</h1>
                 </div>
+                <h3 className="title">Calories Burned:</h3>
+                <h4>{caloriesburned} calories</h4>
                 <h3 className="title">How Much You've Consumed:</h3>
                 <h4>{totalcalories} calories</h4>
-                <br/>
                 <h3 className="title">Possible from Today's Meal Plan:</h3> 
                 <h4>{totalcal} calories</h4>
-                <br/>
                 <h3 className="title">Current Goal:</h3>
                 <h4>{calculatedbmr} calories</h4>
-                <br/>
               </Container>
             </Grid.Column>
 

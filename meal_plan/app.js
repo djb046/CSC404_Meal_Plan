@@ -63,12 +63,12 @@ passport.use(new FitbitStrategy({
     callbackURL: "http://localhost:3000/auth/fitbit/callback",
     profileFields: ['activity']
   },
-  function(accessToken, refreshToken, profile, activity, done) {
+  function(accessToken, refreshToken, profile, done) {
      process.nextTick(function () {
     // User.findOrCreate({ fitbitId: profile.id }, function (err, user) {
       // return done(err, user);
       });
-     return done(null, profile, activity);
+     return done(null, profile);
   }
 ));
 
@@ -130,10 +130,36 @@ function (req, res) {
 });
 
 app.get('/auth/fitbit/success', function(req, res, next) {
-  console.log(req.user._json.user.averageDailySteps);
+
+  steps = req.user._json.user.averageDailySteps;
+  console.log(steps/20);
   req.user.id = id;
+  console.log(id);
+  console.log(req.user.id);
+  burns = 0;
+
+  db.getConnection(function (err, mclient) {//"'+id+'", "'+displayName+'"
+      mclient.query('SELECT bee FROM meals WHERE UserID = "'+req.user.id+'" ', function (err, rows, fields) {
+         
+        if (err) throw err;
+        console.log("Current calories burned: " + (rows[0].caloriesburned+(steps/20)));
+      mclient.query('UPDATE meals SET caloriesburned="'+(rows[0].bee+(steps/20))+'" WHERE UserID="'+req.user.id+'"', function (err, rows, fields) {
+         
+        if (err) throw err;
+        mclient.release();
+      });
+      
   res.redirect('/');
-  
+});
+});
+});
+
+var OAuth2Strategy = require('passport-oauth2');
+
+
+app.get('/auth/fitbit/failed', function(req, res, next)
+{
+  res.redirect('/');
 });
 
 app.get('/auth/amazon',

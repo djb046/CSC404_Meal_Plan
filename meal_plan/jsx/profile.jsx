@@ -10,7 +10,7 @@ const Profile = () => (
             <Image href="/survey"centered circular src="images/ghost.jpg"/>               
         </Grid.Row>
         <Grid.Row columns='equal' verticalAlign= 'center'>
-            <Button centered color='orange' className='dashButton2' href='/survey' >Edit Profile</Button>
+            <Button centered color='orange' className='dashButton2' href='/profile' >Edit Profile</Button>
         </Grid.Row>
         <Grid.Row columns='equal' verticalAlign= 'center'>
             <Button centered color='orange' className='dashButton2' href= '/viewMealPlan'>View Meal Plan</Button>

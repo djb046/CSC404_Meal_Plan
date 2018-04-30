@@ -33,7 +33,7 @@ class Dashboard extends React.Component {
   axios.post('/viewMealPlan/view')
 .then(function(response)
 {
- console.log(response);
+//  console.log(response);
  _this.setState({
   meal1: response.data.breakfast,
   meal2: response.data.lunch,
@@ -48,7 +48,7 @@ class Dashboard extends React.Component {
   totalcalories: response.data.totalcalories
   
 });
-console.log(response.data);
+// console.log(response.data);
 });
 }
 

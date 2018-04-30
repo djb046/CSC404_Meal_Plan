@@ -5,6 +5,7 @@ module.exports = {
     dashboard: './jsx/dashboard.jsx',
     login: './jsx/login.jsx',
     survey: './jsx/survey.jsx',
+    editSurvey: './jsx/editSurvey.jsx',
     create: './jsx/createNewMealPlan.jsx',
     nutritionxTest: './jsx/nutxTest.jsx',
     view: './jsx/viewMealPlan.jsx'

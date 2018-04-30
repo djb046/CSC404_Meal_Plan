@@ -23,7 +23,7 @@ class NavBar extends React.Component {
             <Dropdown.Item href='/createMealPlan'>Generate</Dropdown.Item>
           </Dropdown.Menu>
           </Dropdown>
-          <Menu.Item name='Profile' href="/survey"/>
+          <Menu.Item name='Profile' href='/profile'/>
           <Menu.Menu position='right'>
           <Menu.Item name='logout' href='logout'/>
           </Menu.Menu>

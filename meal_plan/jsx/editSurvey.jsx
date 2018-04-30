@@ -23,6 +23,25 @@ class Survey extends React.Component {
 
         };
     }
+    componentDidMount() {
+        var _this = this;
+        axios.post('/Profile/info')
+            .then(function (response) {
+                // console.log(response.data);
+                _this.setState({
+                    gender: response.data.gender,
+                    feet: '',
+                    inches: '',
+                    height: response.data.height,
+                    weight: response.data.weight,
+                    age: response.data.age,
+                    allergies: response.data.allergies,
+                    activityLevel: response.data.activityLevel
+
+                });
+                // console.log(response);
+            });
+    }
 
     changeInput(e) {
         var id = e.target.id;

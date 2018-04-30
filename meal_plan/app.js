@@ -13,8 +13,6 @@ var mysql = require('mysql');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-// var surveyRouter = require('./routes/survey');
-//var create_meal_plan = require('./routes/create-meal-plan');
 var db = require('./routes/db');
 var generateMealPlan =  require('./routes/generateMealPlan');
 var survey = require('./routes/survey');
@@ -22,6 +20,7 @@ var createMealPlan = require('./routes/createMealPlan');
 var viewMealPlan = require('./routes/viewMealPlan');
 var editUserInfo = require('./routes/editUserInfo');
 var dashboard = require('./routes/dashboard');
+var profile = require('./routes/profile');
 
 var AMAZON_CLIENT_ID = "amzn1.application-oa2-client.c84a394dab3c4fea9d228b3881caf672"
 var AMAZON_CLIENT_SECRET = "7f09ba172422925cc657d73fb59bcd1384a22a6f74190bd8cefec554a7fea5f4";
@@ -97,30 +96,23 @@ app.use(express.static(path.join(__dirname, 'views')));
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(express.static(path.join(__dirname, 'jsx')));
 app.use(express.static(path.join(__dirname, 'jsx/images')));
-// app.use(express.static(path.join(__dirname, 'jsx')));
 
-app.use('/generateMealPlan', generateMealPlan);
-app.use('/survey', survey);
-app.use('/createMealPlan', createMealPlan);
-app.use('/viewMealPlan', viewMealPlan);
-app.use('/editUserInfo', editUserInfo);
-app.use('/dashboard', dashboard);
+app.use('/generateMealPlan', ensureAuthenticated, generateMealPlan);
+app.use('/survey',ensureAuthenticated, survey);
+app.use('/createMealPlan', ensureAuthenticated, createMealPlan);
+app.use('/viewMealPlan', ensureAuthenticated, viewMealPlan);
+app.use('/editUserInfo', ensureAuthenticated, editUserInfo);
+app.use('/dashboard', ensureAuthenticated,dashboard);
+app.use('/profile', ensureAuthenticated, profile);
 
 app.get('/', function (req, res) {
   res.render('index', { user: req.user });
 });
-// branch
-// this is how we can sercure our routes in the future
-// app.get('/account', ensureAuthenticated, function (req, res) {
-//   res.render('account', { user: req.user });
-// });
-
-var id = '';
-app.get('/test', function (req, res) {
+app.get('/test', ensureAuthenticated,  function (req, res) {
   res.render('test', {});
 });
 
-app.get('/testNutes', function (req, res) {
+app.get('/testNutes', ensureAuthenticated, function (req, res) {
   res.render('nutritionTest', {});
 });
 
@@ -147,17 +139,10 @@ app.get('/auth/fitbit/success', function(req, res, next) {
 app.get('/auth/amazon',
   passport.authenticate('amazon', { scope: ['profile', 'postal_code'] }),
   function (req, res) {
-    // The request will be redirected to Amazon for authentication, so this
-    // function will not be called.
   });
 
-// GET /auth/amazon/callback
-//   Use passport.authenticate() as route middleware to authenticate the
-//   request.  If authentication fails, the user will be redirected back to the
-//   login page.  Otherwise, the primary route function function will be called,
-//   which, in this example, will redirect the user to the home page.
 app.get('/auth/amazon/callback',
-  passport.authenticate('amazon', { failureRedirect: '/login' }),
+  passport.authenticate('amazon', { failureRedirect: '/' }),
   function (req, res) {
     db.getConnection(function (err, mclient) {//"'+id+'", "'+displayName+'"
       mclient.query('INSERT INTO amazonAuth(id, name, new) VALUES ("' + req.user.id + '", "' + req.user.displayName + '", 0) ON DUPLICATE KEY UPDATE amazonAuth.name = amazonAuth.name ', function (err, rows, fields) {
@@ -185,7 +170,6 @@ app.get('/auth/amazon/callback',
           res.redirect('/dashboard');
         }
         mclient.release();
-
       });
     });
   });
@@ -196,10 +180,10 @@ app.get('/logout', function (req, res) {
 });
 
 
-// TODO add this to routes to check premissions $$$$$
+// Makes sure the user is authenticated and is able to navigate around the application
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
-  res.redirect('/login')
+  res.redirect('/')
 }
 
 // catch 404 and forward to error handler
@@ -217,29 +201,4 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-// app.post('/newUser', function (req, res) 
-// {
-
-// console.log("TEST");
-// var newUserq = "INSERT INTO amazonAuth(id, name) VALUES ('test', 'test') ON DUPLICATE KEY UPDATE amazonAuth.name = amazonAuth.name";
-// // connection.query('INSERT INTO amazonAuth WHERE NOT EXISTS (SELECT * FROM amazonAuth WHERE id = "test" LIMIT 1) VALUES (?)', "test", "test", function(err, result)
-// connection.query(newUserq, function(err, result)
-// {
-// if(err) throw err
-//   console.log("inserted user")
-// });
-
-// });
-
-// db.getConnection(function(err, mclient) {
-//   mclient.query('SELECT * FROM userData', function (err, rows, fields)
-//     {
-
-//     if (err) throw err
-
-//     console.log("Test WORKS")
-//     });
-// });
-
 module.exports = app;

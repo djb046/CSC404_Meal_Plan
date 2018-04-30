@@ -74,7 +74,9 @@ return (
         <Grid.Column>
           <Container className="dashPanel" >
           {/* I have 3 different divider styles */}
-        
+          <div className="title">
+              <h1>Breakfast</h1>
+          </div>
             <Segment>
              Meal: {breakfast.name}
              <Divider section />
@@ -95,6 +97,9 @@ return (
 
         <Grid.Column>
           <Container className="dashPanel" >
+          <div className="title">
+              <h1>Lunch</h1>
+          </div>
           <Segment>
              Meal: {lunch.name}
              <Divider section />
@@ -115,6 +120,9 @@ return (
 
         <Grid.Column>
           <Container className="dashPanel" >
+          <div className="title">
+              <h1>Dinner</h1>
+          </div>
           <Segment>
              Meal: {dinner.name}
              <Divider section />

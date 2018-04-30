@@ -62,7 +62,7 @@ class Survey extends React.Component {
 
     }
     submit() {
-        this.state.height = this.state.feet + "'" + this.state.inches + "''";
+        this.state.height = (this.state.feet +"'"+ this.state.inches+"''");
         console.log(this.state.height)
         axios({
             method: 'post',
@@ -85,8 +85,13 @@ class Survey extends React.Component {
             });
     }
 
-    joinHeight(feet, inches) {
-        var height = feet
+    convertHeight() {
+        if(this.state.feet == '' && this.state.inches == ''){
+            this.state.feet = Math.floor(this.state.height/12);
+            this.state.inches = this.state.height%12;
+        }
+
+        return (this.state.feet + "'" + this.state.inches + "''"); 
     }
 
     render() {
@@ -114,7 +119,9 @@ class Survey extends React.Component {
             { text: 'Male', value: 'Male' },
             { text: 'Female', value: 'Female' }
         ]
+
         return (
+            
             <Container fluid>
                 <NavBar></NavBar>
                 <Grid centered>
@@ -134,6 +141,7 @@ class Survey extends React.Component {
                                 <Form.Group widths='equal'>
                                     <div className="ui center aligned">
                                         <h3 className="title">Height</h3>
+                                        Current: {this.convertHeight()}
                                         <h4 className="title">Feet</h4>
                                         <Button.Group>
                                             <Button icon id='feet' content='4' value='4' onClick={this.changeInput} />

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Form, Button, Dropdown, Container } from 'semantic-ui-react';
+import { Form, Button, Dropdown, Container,Grid } from 'semantic-ui-react';
 import axios from 'axios';
 import NavBar from './navBar.jsx';
 
@@ -103,17 +103,28 @@ class Create extends React.Component {
         ]
 
         return (
-            <Container fluid>
+            <Container  fluid>
             <NavBar></NavBar>
-            <Form>
-                <Form.Group widths='equal'>
-                    <Dropdown id='goal' placeholder='Select Goal' fluid selection options={goalOpts} onChange={this.select} />
-                </Form.Group>
-                <Form.Group widths='equal'>
-                    <Dropdown id='actLevel' placeholder='Select Activity Level' fluid selection options={activityLevelOpts} onChange={this.select} />
-                </Form.Group>
-                <Button basic color='green' onClick={this.submit} >Submit</Button>
-            </Form>
+                <Grid centered>
+                    <Grid.Column width={12}>
+                        <Container className="dashPanel">
+                            <div className="title">
+                                <h1>Generate New Meal Plan</h1>
+                            </div>
+                            <Form>
+                            <h3 className="title">Goal</h3>
+                                <Form.Group widths='equal'>
+                                    <Dropdown id='goal' placeholder='Select Goal' fluid selection options={goalOpts} onChange={this.select} />
+                                </Form.Group>
+                                <h3 className="title">Activity Level</h3>
+                                <Form.Group widths='equal'>
+                                    <Dropdown id='actLevel' placeholder='Select Activity Level' fluid selection options={activityLevelOpts} onChange={this.select} />
+                                </Form.Group>
+                                <Button color='orange' onClick={this.submit} >Submit</Button>
+                            </Form>
+                        </Container>
+                    </Grid.Column>
+                </Grid>
             </Container>
         )
     }

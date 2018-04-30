@@ -133,7 +133,7 @@ dinnerdel(){
         <Grid divided='vertically' centered>
           <Grid.Row columns={3} >
             {/*Profile Column!*/}
-            <Grid.Column width="3" verticalAlign="left" color="white" key="white">
+            <Grid.Column width="3" key="white">
               <Container className="dashPanel" >
                 <div className="title">
                   <h1>{name}</h1>

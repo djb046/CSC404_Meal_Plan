@@ -114,6 +114,7 @@ class Survey extends React.Component {
                             <Form.Group widths='equal'>
                                 <div className="ui center aligned">
                                 <h3 className="title">Height</h3>
+                                Current: {this.state.feet + "'" + this.state.inches + "''"}
                                 <h4 className="title">Feet</h4>
                                 <Button.Group>
                                   <Button icon id='feet' content='4' value='4' onClick={this.changeInput}/>
@@ -141,13 +142,13 @@ class Survey extends React.Component {
                                 <div className="ui center aligned">
                                 <h3 className="title">Weight</h3>
                                 <Input fluid id='weight' label={{ basic: true, content: 'lbs' }}
-                                    labelPosition='right' placeholder='Read only' onChange={this.changeInput}/>
+                                    labelPosition='right' placeholder='3 digits, in lbs(pounds)' onChange={this.changeInput}/>
                                 </div>
                             </Form.Group>
                             <Form.Group widths='equal'>
                                 <div className="ui center aligned">
                                 <h3 className="title">Age</h3>
-                                <Input fluid id='age' placeholder='Read only' onChange={this.changeInput}/>
+                                <Input fluid id='age' placeholder='Age in digits' onChange={this.changeInput}/>
                                 </div>
                             </Form.Group>
                             <Form.Group widths='equal'>
@@ -159,7 +160,7 @@ class Survey extends React.Component {
                             <Form.Group widths='equal'>
                                 <div className="ui center aligned">
                                 <h3 className="title">Allergies</h3>
-                                <Dropdown fluid id='allergies' label="Allergy" placeholder='None' fluid multiple selection options={options} onChange={this.select}/>
+                                <Dropdown id='allergies' label="Allergy" placeholder='None' fluid multiple selection options={options} onChange={this.select}/>
                                 </div>
                             </Form.Group>
                             <div className="ui center aligned">

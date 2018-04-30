@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Form, Button, Container, Dropdown, Input, Grid } from 'semantic-ui-react';
+import { Form, Button, Container, Dropdown, Input, Grid, Radio, Icon } from 'semantic-ui-react';
 import axios from 'axios';
 import NavBar from './navBar.jsx';
 
@@ -26,6 +26,8 @@ class Survey extends React.Component {
     changeInput(e) {
         var id = e.target.id;
         var value = e.target.value;
+
+        console.log(id + ":" + value);
 
         this.setState({
             [id] : value
@@ -65,9 +67,6 @@ class Survey extends React.Component {
           });
     }
 
-    joinHeight(feet,inches){
-        var height = feet
-    }
 
     render() {
         const options = [
@@ -114,8 +113,27 @@ class Survey extends React.Component {
                             <Form.Group widths='equal'>
                                 <div className="ui center aligned">
                                 <h3 className="title">Height</h3>
-                                <Form.Field id='feet' placeholder='feet' control={Input} onChange={this.changeInput}/>
-                                <Form.Field id='inches' placeholder='inches' control={Input} onChange={this.changeInput}/>
+                                <h4 className="title">Feet</h4>
+                                <Button.Group>
+                                  <Button icon id='feet' content='4' value='4' onClick={this.changeInput}/>
+                                  <Button icon id='feet' content='5' value='5' onClick={this.changeInput}/>
+                                  <Button icon id='feet' content='6' value='6' onClick={this.changeInput}/>
+                                </Button.Group>
+                                <h4 className="title">Inches</h4>
+                                <Button.Group>
+                                  <Button icon id='inches' content='0' value='0' onClick={this.changeInput}/>
+                                  <Button icon id='inches' content='1' value='1' onClick={this.changeInput}/>
+                                  <Button icon id='inches' content='2' value='2' onClick={this.changeInput}/>
+                                  <Button icon id='inches' content='3' value='3' onClick={this.changeInput}/>
+                                  <Button icon id='inches' content='4' value='4' onClick={this.changeInput}/>
+                                  <Button icon id='inches' content='5' value='5' onClick={this.changeInput}/>
+                                  <Button icon id='inches' content='6' value='6' onClick={this.changeInput}/>
+                                  <Button icon id='inches' content='7' value='7' onClick={this.changeInput}/>
+                                  <Button icon id='inches' content='8' value='8' onClick={this.changeInput}/>
+                                  <Button icon id='inches' content='9' value='9' onClick={this.changeInput}/>
+                                  <Button icon id='inches' content='10' value='10' onClick={this.changeInput}/>
+                                  <Button icon id='inches' content='11' value='11' onClick={this.changeInput}/>
+                                </Button.Group>
                                 </div>
                             </Form.Group>
                             <Form.Group>

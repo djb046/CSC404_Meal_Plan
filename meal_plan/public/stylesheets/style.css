@@ -59,19 +59,7 @@ img {
 .removebtn:hover {
     color: #a90505;
 }
-.button {
-  border-radius: 4px;
-  background-color: #84bf43;
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 28px;
-  padding: 20px;
-  width: 220px;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin: 5px;
-}
+
 
 .button span {
   cursor: pointer;

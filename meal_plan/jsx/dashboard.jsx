@@ -151,9 +151,9 @@ dinnerdel(){
                   <h1 centered>Today's Progression</h1>
                 </div>
                 <h2 className="title">Calories Consumed</h2>
-                <Progress percent={Math.floor((totalcalories/totalcal)*100)} inverted color='orange' progress indicating />
+                <Progress percent={percent} inverted color='orange' progress indicating />
                 <h2 className="title">Calories Burned</h2>
-                <Progress percent={Math.floor((caloriesburned/calculatedbmr)*100)} inverted color='orange' progress indicating />
+                <Progress percent={percent2} inverted color='orange' progress indicating />
                 <div className="title">
                   <h1 centered>Infographic</h1>
                 </div>

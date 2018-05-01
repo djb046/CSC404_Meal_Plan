@@ -32,9 +32,7 @@ class Login extends React.Component {
       <br>
       </br>
       <br>
-      </br>
-      <br>
-      </br>
+	      </br>
       <br>
       </br>
       <Container className="dashPanel3">

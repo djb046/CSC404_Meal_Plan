@@ -7,7 +7,7 @@ const Profile = () => (
     <Grid columns='equal'>
         <Grid.Row verticalAlign='middle'>
         {/* Avatar Image must be 150x150px! */}  
-            <Image href="/survey"centered circular src="images/joe.jpg"/>               
+            <Image href="/profile"centered circular src="images/joe.jpg"/>               
         </Grid.Row>
         <Grid.Row columns='equal' verticalAlign= 'middle'>
             <Button fluid centered color='orange' className='dashButton2' href='/profile' >Edit Profile</Button>

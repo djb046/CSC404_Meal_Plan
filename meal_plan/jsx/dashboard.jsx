@@ -113,7 +113,7 @@ dinnerdel(){
     const totalcalories = this.state.totalcalories;
     var percent = 0;
     var percent2 = 0;
-
+    
     if (Math.floor((caloriesburned/calculatedbmr)*100) >= 0)
     {
       percent = Math.floor((caloriesburned/calculatedbmr)*100);

@@ -25,7 +25,7 @@ class Survey extends React.Component {
     }
     componentDidMount() {
         var _this = this;
-        axios.post('/Profile/info')
+        axios.post('/profile/info')
             .then(function (response) {
                 // console.log(response.data);
                 _this.setState({

@@ -30,7 +30,7 @@ router.post('/delete/lunch', function (req, res) {
 
 router.post('/delete/dinner', function (req, res) {
   db.getConnection(function (err, mclient) {
-    mclient.query('UPDATE meals SET meal3=0, currentcalories= WHERE UserID= "'+req.user.id+'"', function (err, rows, fields) {
+    mclient.query('UPDATE meals SET meal3=0 WHERE UserID= "'+req.user.id+'"', function (err, rows, fields) {
       if (err) throw err;
       console.log("Deleted dinner for " + req.user.id);
       res.redirect('/viewMealPlan');

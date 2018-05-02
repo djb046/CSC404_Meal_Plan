@@ -11,6 +11,7 @@ var session = require('express-session');
 var methodOverride = require('method-override');
 var mysql = require('mysql');
 
+var alexa = require('./routes/alexa');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var db = require('./routes/db');
@@ -104,6 +105,7 @@ app.use('/viewMealPlan', ensureAuthenticated, viewMealPlan);
 app.use('/editUserInfo', ensureAuthenticated, editUserInfo);
 app.use('/dashboard', ensureAuthenticated,dashboard);
 app.use('/profile', ensureAuthenticated, profile);
+app.use('/alexa');
 
 app.get('/', function (req, res) {
   res.render('index', { user: req.user });

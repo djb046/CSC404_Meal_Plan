@@ -142,13 +142,13 @@ class Survey extends React.Component {
                                 <div className="ui center aligned">
                                 <h3 className="title">Weight</h3>
                                 <Input fluid id='weight' label={{ basic: true, content: 'lbs' }}
-                                    labelPosition='right' placeholder='3 digits, in lbs(pounds)' onChange={this.changeInput}/>
+                                    labelPosition='right' type='number' placeholder='3 digits, in lbs(pounds)' onChange={this.changeInput}/>
                                 </div>
                             </Form.Group>
                             <Form.Group widths='equal'>
                                 <div className="ui center aligned">
                                 <h3 className="title">Age</h3>
-                                <Input fluid id='age' placeholder='Age in digits' onChange={this.changeInput}/>
+                                <Input fluid id='age' type='number' placeholder='Age in digits' onChange={this.changeInput}/>
                                 </div>
                             </Form.Group>
                             <Form.Group widths='equal'>

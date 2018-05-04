@@ -191,19 +191,37 @@ router.post('/spec/breakfast', function (req, res) {
 
 
 router.post('/spec/lunch', function (req, res) {
+  // console.log(req.body);
   db.getConnection(function (err, mclient) {
-    mclient.query('UPDATE meals SET meal1c=1 WHERE UserID="' + req.user.id + '"', function (err, rows, fields) {
-      mclient.release();
-      res.redirect('/dashboard');
+    mclient.query('INSERT INTO mealplan_lunch (name, Protein, Fat, Carbs, Calories) VALUES ("' + req.body.foods + '", "' + req.body.protein + '", "' + req.body.Fat + '", "' + req.body.Carbs + '", "' + req.body.Calories + '");', function (err, rows, fields) {
+      // mclient.release();
+      var something = 0;
+      mclient.query('SELECT last_insert_id()', function (err, rows, fields) {
+        console.log(rows[0]['last_insert_id()']);
+        something = rows[0]['last_insert_id()'];
+        mclient.query('UPDATE meals SET meal2="' + something + '", meal2c=0 WHERE UserID="' + req.user.id + '"', function (err, rows, fields) {
+          mclient.release();
+        });
+      });
+      res.redirect('/viewMealPlan');
       if (err) throw err;
     });
   });
 });
 router.post('/spec/dinner', function (req, res) {
+  // console.log(req.body);
   db.getConnection(function (err, mclient) {
-    mclient.query('UPDATE meals SET meal1c=1 WHERE UserID="' + req.user.id + '"', function (err, rows, fields) {
-      mclient.release();
-      res.redirect('/dashboard');
+    mclient.query('INSERT INTO mealplan_dinner (name, Protein, Fat, Carbs, Calories) VALUES ("' + req.body.foods + '", "' + req.body.protein + '", "' + req.body.Fat + '", "' + req.body.Carbs + '", "' + req.body.Calories + '");', function (err, rows, fields) {
+      // mclient.release();
+      var something = 0;
+      mclient.query('SELECT last_insert_id()', function (err, rows, fields) {
+        console.log(rows[0]['last_insert_id()']);
+        something = rows[0]['last_insert_id()'];
+        mclient.query('UPDATE meals SET meal3="' + something + '", meal3c=0 WHERE UserID="' + req.user.id + '"', function (err, rows, fields) {
+          mclient.release();
+        });
+      });
+      res.redirect('/viewMealPlan');
       if (err) throw err;
     });
   });

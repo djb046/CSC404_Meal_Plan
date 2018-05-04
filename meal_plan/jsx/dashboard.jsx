@@ -170,7 +170,6 @@ dinnerdel(){
                 <Item.Group divided>
                   {/*Breakfast*/}
                   <Item>
-                    <Item.Image size='tiny' src='images/bacon.jpg' />
                     <Item.Content>
                       <Item.Header>Breakfast:</Item.Header>
                       <Item.Description>
@@ -210,7 +209,6 @@ dinnerdel(){
 
                   <Item>
                     {/*Lunch*/}
-                    <Item.Image size='tiny' src='images/bacon.jpg' />
                     <Item.Content>
                       <Item.Header>Lunch:</Item.Header>
                       <Item.Description>
@@ -248,7 +246,6 @@ dinnerdel(){
 
                   <Item>
                     {/*Dinner*/}
-                    <Item.Image size='tiny' src='images/bacon.jpg' />
                     <Item.Content>
                       <Item.Header>Dinner:</Item.Header>
                       <Item.Description>

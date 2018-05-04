@@ -9,7 +9,7 @@ html { overflow-y: scroll; }
 body { position: absolute; }
 
 h1{
-  border-bottom: 8px solid #F26202;
+  border-bottom: 4px solid #F26202;
   font-size: 24px;
   display: inline-block;
 }

@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Form, Button, Dropdown, Container, Segment } from 'semantic-ui-react';
 import axios from 'axios';
-import NavBar from './navBar.jsx';
 
 
-class NutritionTest extends React.Component {
+class NuteLabel extends React.Component {
     constructor(props) {
         super(props);
         this.changeInput = this.changeInput.bind(this);
@@ -77,10 +76,9 @@ class NutritionTest extends React.Component {
 
         return (
             <Container fluid>
-                <NavBar></NavBar>
                 <Form>
                     <Form.Group widths='equal'>
-                        <Form.Input id='foodQuery' fluid label='Food' placeholder='whatcha eat?' onChange={this.changeInput} />
+                        <Form.Input id='foodQuery' placeholder='whatcha eat?' onChange={this.changeInput} />
                     </Form.Group>
                     <Segment id='test1'></Segment>
                     <Button basic color='green' onClick={this.submit} >Submit</Button>
@@ -90,4 +88,4 @@ class NutritionTest extends React.Component {
     }
 }
 
-ReactDOM.render(<NutritionTest />, document.getElementById('dashboard'));
+export default NuteLabel;

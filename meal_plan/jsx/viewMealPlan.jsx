@@ -36,9 +36,9 @@ class View extends React.Component {
     let id = e.target.id;
     let value = e.target.value;
     this.setState({
-        [id]: value
+      [id]: value
     });
-}
+  }
 
   dinner() {
     axios.post('/viewMealPlan/delete/dinner')
@@ -64,55 +64,55 @@ class View extends React.Component {
   }
   submitBreakfest() {
     axios({
+      method: 'post',
+      headers: {
+        "x-app-id": 'b5e0352f',
+        "x-app-key": '9d811ca9f553eb1a1a121d026d19b094',
+        "Content-Type": "application/json"
+      },
+      url: 'https://trackapi.nutritionix.com/v2/natural/nutrients',
+      data: {
+        "query": this.state.foodQuery,
+        "timezone": "US/Eastern"
+      }
+    }).then(function (res) {
+      console.log(res);
+      let food_name = '', nf_calories = 0, nf_total_fat = 0, nf_saturated_fat = 0, nf_cholesterol = 0, nf_sodium = 0, nf_total_carbohydrate = 0, nf_sugars = 0, nf_protein = 0;
+      for (var i = 0; i < res.data.foods.length; i++) {
+        food_name += res.data.foods[i].food_name + ', '
+        nf_calories = nf_calories + res.data.foods[i].nf_calories
+        nf_total_fat = nf_total_fat + res.data.foods[i].nf_total_fat
+        nf_saturated_fat = nf_saturated_fat + res.data.foods[i].nf_saturated_fat
+        nf_cholesterol = nf_cholesterol + res.data.foods[i].nf_cholesterol
+        nf_sodium = nf_sodium + res.data.foods[i].nf_sodium
+        nf_total_carbohydrate = nf_total_carbohydrate + res.data.foods[i].nf_total_carbohydrate
+        nf_sugars = nf_sugars + res.data.foods[i].nf_sugars
+        nf_protein = nf_protein + res.data.foods[i].nf_protein
+      }
+      let data = {
+        foods: food_name,
+        protein: nf_protein,
+        Fat: nf_total_fat,
+        Carbs: nf_total_carbohydrate,
+        Calories: nf_calories
+
+      }
+      axios({
         method: 'post',
         headers: {
-            "x-app-id": 'b5e0352f',
-            "x-app-key": '9d811ca9f553eb1a1a121d026d19b094',
-            "Content-Type": "application/json"
+          "Content-Type": "application/json"
         },
-        url: 'https://trackapi.nutritionix.com/v2/natural/nutrients',
-        data: {
-            "query": this.state.foodQuery,
-            "timezone": "US/Eastern"
-        }
-    }).then(function (res) {
-        console.log(res);
-        let food_name = '', nf_calories = 0, nf_total_fat = 0, nf_saturated_fat = 0, nf_cholesterol = 0, nf_sodium = 0, nf_total_carbohydrate = 0, nf_sugars = 0, nf_protein = 0;
-        for(var i = 0; i < res.data.foods.length; i++) {
-            food_name += res.data.foods[i].food_name + ', '
-            nf_calories = nf_calories + res.data.foods[i].nf_calories
-            nf_total_fat = nf_total_fat + res.data.foods[i].nf_total_fat
-            nf_saturated_fat = nf_saturated_fat + res.data.foods[i].nf_saturated_fat
-            nf_cholesterol = nf_cholesterol + res.data.foods[i].nf_cholesterol
-            nf_sodium = nf_sodium + res.data.foods[i].nf_sodium
-            nf_total_carbohydrate = nf_total_carbohydrate + res.data.foods[i].nf_total_carbohydrate
-            nf_sugars = nf_sugars + res.data.foods[i].nf_sugars
-            nf_protein = nf_protein + res.data.foods[i].nf_protein
-        }
-        let data = {
-          foods: food_name,
-          protein: nf_protein,
-          Fat: nf_total_fat,
-          Carbs: nf_total_carbohydrate,
-          Calories: nf_calories
+        url: '/viewMealPlan/spec/breakfast',
+        data: data
+      }).then(function (res) {
+        location.href = '/viewMealPlan';
+      });
 
-        }
-        axios({
-          method: 'post',
-          headers: {
-              "Content-Type": "application/json"
-          },
-          url: '/viewMealPlan/spec/breakfast',
-          data: data
-        }).then(function(res){
-          location.href = '/viewMealPlan';
-        });
-        
     }).catch(function (error) {
-        console.log(error);
+      console.log(error);
     });
 
-}
+  }
 
   render() {
     const breakfast = this.state.breakfast;
@@ -146,9 +146,9 @@ class View extends React.Component {
                 <Button color='red' onClick={this.breakfast}> Remove Breakfast </Button>
                 <Button basic color='green' onClick={this.submitBreakfest} >Submit</Button>
                 <Form.Group widths='equal'>
-                        <Form.Input id='foodQuery' placeholder='whatcha eat?' onChange={this.changeInput} />
-                    </Form.Group>
-                
+                  <Form.Input id='foodQuery' placeholder='What did you eat?' onChange={this.changeInput} />
+                </Form.Group>
+
 
               </Container>
 
@@ -173,7 +173,11 @@ class View extends React.Component {
                   Ingredients: {lunch.Ingredients}
                 </Segment>
                 <Button color='red' onClick={this.lunch}> Remove Lunch </Button>
-                
+                <Button basic color='green' onClick={this.submitBreakfest} >Submit</Button>
+                <Form.Group widths='equal'>
+                  <Form.Input id='foodQuery' placeholder='What did you eat?' onChange={this.changeInput} />
+                </Form.Group>
+
               </Container>
 
             </Grid.Column>
@@ -197,6 +201,10 @@ class View extends React.Component {
                   Ingredients: {dinner.Ingredients}
                 </Segment>
                 <Button color='red' onClick={this.dinner}> Remove Dinner </Button>
+                <Button basic color='green' onClick={this.submitBreakfest} >Submit</Button>
+                <Form.Group widths='equal'>
+                  <Form.Input id='foodQuery' placeholder='What did you eat?' onChange={this.changeInput} />
+                </Form.Group>
 
               </Container>
             </Grid.Column>

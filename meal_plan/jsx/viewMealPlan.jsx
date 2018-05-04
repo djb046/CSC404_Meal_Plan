@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { Divider, Container, Card, Icon, Image, Grid, Segment, Button } from 'semantic-ui-react'
 import NavBar from './navBar.jsx';
 import axios from 'axios';
+import NuteLabel from './nutxTest.jsx';
 
 class View extends React.Component 
 {
@@ -91,6 +92,7 @@ return (
              Ingredients: {breakfast.Ingredients}
              </Segment>
              <Button color='red' onClick={this.breakfast}> Remove Breakfast </Button>
+             <NuteLabel/>
           </Container>
 
         </Grid.Column>
@@ -114,6 +116,7 @@ return (
              Ingredients: {lunch.Ingredients}
              </Segment>
              <Button color='red' onClick={this.lunch}> Remove Lunch </Button>
+             <NuteLabel/>
           </Container>
           
         </Grid.Column>
@@ -137,6 +140,7 @@ return (
              Ingredients: {dinner.Ingredients}
              </Segment>
              <Button color='red' onClick={this.dinner}> Remove Dinner </Button>
+             <NuteLabel/>
             </Container>
         </Grid.Column>
 

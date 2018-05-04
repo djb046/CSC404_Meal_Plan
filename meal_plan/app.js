@@ -114,7 +114,7 @@ app.get('/test', ensureAuthenticated,  function (req, res) {
   res.render('test', {});
 });
 
-app.get('/testNutes', ensureAuthenticated, function (req, res) {
+app.get('/testNutes', function (req, res) {
   res.render('nutritionTest', {});
 });
 

@@ -33,16 +33,27 @@ class NuteLabel extends React.Component {
                 "query": this.state.foodQuery,
                 "timezone": "US/Eastern"
             }
-        }).then(function (response) {
-
-            console.log(response);
-            var label = response.data.foods[0];
+        }).then(function (res) {
+            console.log(res);
+            let food_name = '', nf_calories = 0, nf_total_fat = 0, nf_saturated_fat = 0, nf_cholesterol = 0, nf_sodium = 0, nf_total_carbohydrate = 0, nf_sugars = 0, nf_protein = 0;
+            for(var i = 0; i < res.data.foods.length; i++) {
+                food_name += res.data.foods[i].food_name + ', '
+                nf_calories = nf_calories + res.data.foods[i].nf_calories
+                nf_total_fat = nf_total_fat + res.data.foods[i].nf_total_fat
+                nf_saturated_fat = nf_saturated_fat + res.data.foods[i].nf_saturated_fat
+                nf_cholesterol = nf_cholesterol + res.data.foods[i].nf_cholesterol
+                nf_sodium = nf_sodium + res.data.foods[i].nf_sodium
+                nf_total_carbohydrate = nf_total_carbohydrate + res.data.foods[i].nf_total_carbohydrate
+                nf_sugars = nf_sugars + res.data.foods[i].nf_sugars
+                nf_protein = nf_protein + res.data.foods[i].nf_protein
+            }
+            console.log(food_name, nf_calories, nf_total_fat, nf_saturated_fat, nf_cholesterol, nf_sodium, nf_total_carbohydrate, nf_sugars,nf_protein)
+            var label = res.data.foods[0];
             $('#test1').nutritionLabel({
                 'scrollHeightPixel': 200,
                 'scrollLongIngredients': true,
                 'showItemName': false,
                 'showServingsPerContainer': true,
-                'ingredientList': 'Enriched Bleached Wheat Flour (Bleached Flour, Malted Barley Flour, Niacin, Iron, Thiamin Mononitrate, Riboflavin, Folic Acid), Sugar, Vegetable Oil (contains one or more of the following oils: Cottonseed Oil, Palm Oil, Soybean Oil), Water, Hydrogenated Vegetable Oil (Palm Kernel Oil, Palm Oil), High Fructose Corn Syrup, Cocoa Powder (Processed With Alkali), contains 2% or less of the following: Eggs, Nonfat Milk, Glycerin, Soy Flour, Corn Syrup Solids, Leavening (Sodium Acid Pyrophosphate, Baking Soda, Sodium Aluminum Phosphate), Preservatives (Potassium Sorbate, Sodium Propionate, Calcium Propionate), Salt, Distilled Monoglycerides, Dextrose, Food Starch-Modified (Corn and/or Wheat), Soy, Lecithin, Natural and Artificial Flavor, Mono- and Diglycerides, Spices, Tapioca Starch, Wheat Starch, Cellulose Gum, Guar Gum, Karaya Gum, colored with Extracts of Annatto and Turmeric, Artificial Color.',
 
                 'showPolyFat': false,
                 'showMonoFat': false,
@@ -54,17 +65,16 @@ class NuteLabel extends React.Component {
                 'showIron': false,
 
                 'valueServingUnitQuantity': 1,
-                'valueServingSizeUnit': label.food_name,
+                'valueServingSizeUnit': food_name,
 
-                'valueCalories': label.nf_calories,
-                'valueFatCalories': 220,
-                'valueTotalFat': label.nf_total_fat,
-                'valueSatFat': label.nf_saturated_fat,
-                'valueCholesterol': label.nf_cholesterol,
-                'valueSodium': label.nf_sodium,
-                'valueTotalCarb': label.nf_total_carbohydrate,
-                'valueSugars': label.nf_sugars,
-                'valueProteins': label.nf_protein
+                'valueCalories': nf_calories,
+                'valueTotalFat': nf_total_fat,
+                'valueSatFat': nf_saturated_fat,
+                'valueCholesterol': nf_cholesterol,
+                'valueSodium': nf_sodium,
+                'valueTotalCarb': nf_total_carbohydrate,
+                'valueSugars': nf_sugars,
+                'valueProteins': nf_protein
             });
         }).catch(function (error) {
             console.log(error);
@@ -80,12 +90,13 @@ class NuteLabel extends React.Component {
                     <Form.Group widths='equal'>
                         <Form.Input id='foodQuery' placeholder='whatcha eat?' onChange={this.changeInput} />
                     </Form.Group>
-                    <Segment id='test1'></Segment>
+                    {/* <Segment id='test1'></Segment> */}
                     <Button basic color='green' onClick={this.submit} >Submit</Button>
                 </Form>
+                <Segment id="test1" />
             </Container>
         )
     }
 }
 
-export default NuteLabel;
+ReactDOM.render(<NuteLabel />, document.getElementById('dashboard'));

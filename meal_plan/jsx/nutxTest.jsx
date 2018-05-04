@@ -88,7 +88,7 @@ class NuteLabel extends React.Component {
             <Container fluid>
                 <Form>
                     <Form.Group widths='equal'>
-                        <Form.Input id='foodQuery' placeholder='whatcha eat?' onChange={this.changeInput} />
+                        <Form.Input id='foodQuery' placeholder='What did you eat?' onChange={this.changeInput} />
                     </Form.Group>
                     {/* <Segment id='test1'></Segment> */}
                     <Button basic color='green' onClick={this.submit} >Submit</Button>
